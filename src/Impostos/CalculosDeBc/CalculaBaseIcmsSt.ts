@@ -27,21 +27,22 @@ export class CalculaBaseIcmsSt extends CalculaBaseCalculoBase {
         ? this.calculaIcmsComDescontoCondicional(baseCalculoIcms)
         : this.calculaIcmsComDescontoIncondicional(baseCalculoIcms);
 
-    baseCalculoSt = baseCalculoIcms * (1 + this.tributavel.percentualMva / 100);
+    baseCalculoSt = baseCalculoSt * (1 + this.tributavel.percentualMva / 100);
+
     return baseCalculoSt;
   }
 
   private calculaIcmsComDescontoIncondicional(baseCalculoInicial): number {
     let baseCalculo = baseCalculoInicial - this.tributavel.desconto;
     baseCalculo =
-      baseCalculo - (baseCalculo * this.tributavel.percentualReducao) / 100;
+      baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
     return baseCalculo;
   }
 
   private calculaIcmsComDescontoCondicional(baseCalculoInicial): number {
     let baseCalculo = baseCalculoInicial + this.tributavel.desconto;
     baseCalculo =
-      baseCalculo - (baseCalculo * this.tributavel.percentualReducao) / 100;
+      baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
 
     return baseCalculo;
   }

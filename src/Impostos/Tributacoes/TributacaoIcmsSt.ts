@@ -20,9 +20,14 @@ export class TributacaoIcmsSt {
     this.baseIcmsSt = new CalculaBaseIcmsSt(tributavel, tipoDesconto);
   }
 
+  public calcula(): IResultadoCalculoIcmsSt {
+    return this.calculaIcmsSt();
+  }
+
   private calculaIcmsSt(): IResultadoCalculoIcmsSt {
     const baseCalculoOperacaoPropria =
       this.calculoBaseIcmsSemIpi.calculaBaseDeCalculo();
+
     const valorIcmsProprio = this.calculaIcms(baseCalculoOperacaoPropria);
 
     const baseCalculoIcmsSt = this.baseIcmsSt.calculaBaseDeCalculo();

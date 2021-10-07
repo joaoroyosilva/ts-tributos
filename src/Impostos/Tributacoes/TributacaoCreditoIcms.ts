@@ -1,4 +1,5 @@
 import { ArgumentException } from '../../Exceptions/ArgumentException';
+import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTributacao';
 import { Documento } from '../../Flags/Documento';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
 import { CalculaBaseCalculoIcms } from '../CalculosDeBc/CalculaBaseCalculoIcms';
@@ -44,9 +45,9 @@ export class TributacaoCreditoIcms {
         var resultadoIcms = new FacadeCalculadoraTributacao(
           this.tributavel,
           this.tipoDesconto
-        ).CalculaIcmsSt();
+        ).calculaIcmsSt();
         return (
-          (resultadoIcms.ValorIcmsSt * this.tributavel.percentualCredito) / 100
+          (resultadoIcms.valorIcmsSt * this.tributavel.percentualCredito) / 100
         );
       default:
         throw new ArgumentException();

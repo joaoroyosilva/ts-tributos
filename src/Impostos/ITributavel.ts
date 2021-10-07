@@ -1,3 +1,4 @@
+import { Csosn } from '../Flags/Csosn';
 import { Cst } from '../Flags/Cst';
 import { CstIpi } from '../Flags/CstIpi';
 import { CstPisCofins } from '../Flags/CstPisCofins';
@@ -6,9 +7,10 @@ import { Documento } from '../Flags/Documento';
 export interface ITributavel {
   documento: Documento;
   cst: Cst;
+  csosn: Csosn;
   cstPisCofins: CstPisCofins;
   cstIpi: CstIpi;
-  isService: boolean;
+  isServico: boolean;
   valorProduto: number;
   frete: number;
   seguro: number;

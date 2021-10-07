@@ -1,14 +1,14 @@
 export enum Csosn {
-  csosn101 = 1,
-  csosn102 = 2,
-  csosn103 = 3,
-  csosn201 = 4,
-  csosn202 = 5,
-  csosn203 = 6,
-  csosn300 = 7,
-  csosn400 = 8,
-  csosn500 = 9,
-  csosn900 = 10,
+  csosn101 = 101,
+  csosn102 = 102,
+  csosn103 = 103,
+  csosn201 = 201,
+  csosn202 = 202,
+  csosn203 = 203,
+  csosn300 = 300,
+  csosn400 = 400,
+  csosn500 = 500,
+  csosn900 = 900,
 }
 
 export const CsosnLabel = new Map<number, string>([

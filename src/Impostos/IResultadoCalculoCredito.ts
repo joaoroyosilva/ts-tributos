@@ -1,1 +1,4 @@
-export interface IResultadoCalculoCredito {}
+export interface IResultadoCalculoCredito {
+  baseCalculo: number;
+  valor: number;
+}

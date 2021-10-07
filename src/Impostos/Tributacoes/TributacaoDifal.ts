@@ -1,6 +1,7 @@
 import { TipoDesconto } from '../../Flags/TipoDesconto';
 import { CalculaBaseCalculoIcms } from '../CalculosDeBc/CalculaBaseCalculoIcms';
 import { ResultadoCalculoDifal } from '../Implementacoes/ResultadoCalculoDifal';
+import { IResultadoCalculoDifal } from '../IResultadoCalculoDifal';
 import { ITributavel } from '../ITributavel';
 import { TributacaoFcp } from './TributacaoFcp';
 
@@ -17,6 +18,10 @@ export class TributacaoDifal {
       tipoDesconto
     );
     this.tributacaoFcp = new TributacaoFcp(tributavel, tipoDesconto);
+  }
+
+  public calcula(): IResultadoCalculoDifal {
+    return this.calculaIcms();
   }
 
   private calculaIcms(): ResultadoCalculoDifal {

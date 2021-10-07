@@ -1,1 +1,4 @@
-export interface IResultadoCalculoPis {}
+export interface IResultadoCalculoPis {
+  baseCalculo: number;
+  valor: number;
+}

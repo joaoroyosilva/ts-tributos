@@ -6,9 +6,10 @@ import { ITributavel } from '../ITributavel';
 
 export class TributacaoIcms {
   private calculaBaseCalculoIcms: CalculaBaseCalculoIcms;
+
   constructor(
-    private tributavel: ITributavel,
-    private tipoDesconto: TipoDesconto
+    public tributavel: ITributavel,
+    public tipoDesconto: TipoDesconto
   ) {
     this.calculaBaseCalculoIcms = new CalculaBaseCalculoIcms(
       tributavel,
@@ -21,9 +22,7 @@ export class TributacaoIcms {
   }
 
   private calculaIcms(): IResultadoCalculoIcms {
-    const baseCalculo =
-      this.calculaBaseCalculoIcms.calculaBaseDeCalculo() +
-      this.tributavel.valorIpi;
+    const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
 
     const valorIcms = this.calculaValorIcms(baseCalculo);
 

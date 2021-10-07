@@ -72,18 +72,15 @@ export class TributacaoIssqn {
   }
 
   private calcularRetPis(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualRetPis) / 100;
-    return valor > 10 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualRetPis) / 100;
   }
 
   private calcularRetCofins(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualRetCofins) / 100;
-    return valor > 10 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualRetCofins) / 100;
   }
 
   private calcularRetCsll(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualRetCsll) / 100;
-    return valor > 10 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualRetCsll) / 100;
   }
 
   private calcularRetIrrf(baseCalculo: number): number {

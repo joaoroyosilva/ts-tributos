@@ -19,6 +19,15 @@ export class ResultadoCalculoDifal implements IResultadoCalculoDifal {
   }
 
   private static montaMensageDifal(dadosMensagemDifal: IDadosMensagemDifal) {
-    return `Valores totais do ICMS interstadual: DIFAL da UF destino ${dadosMensagemDifal.valorIcmsDestino} + FCP ${dadosMensagemDifal.fcp}; DIFAL da UF Origem ${dadosMensagemDifal.valorIcmsOrigem}`;
+    return `Valores totais do ICMS interstadual: DIFAL da UF destino ${dadosMensagemDifal.valorIcmsDestino
+      .toFixed(2)
+      .replace('.', ',')} + FCP ${dadosMensagemDifal.fcp
+      .toFixed(2)
+      .replace(
+        '.',
+        ','
+      )}; DIFAL da UF Origem ${dadosMensagemDifal.valorIcmsOrigem
+      .toFixed(2)
+      .replace('.', ',')}`;
   }
 }

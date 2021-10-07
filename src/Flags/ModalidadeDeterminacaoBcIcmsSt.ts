@@ -1,4 +1,4 @@
-export enum ModalidadeDeterminacaoBsIcmsSt {
+export enum ModalidadeDeterminacaoBcIcmsSt {
   precoTabeladoOuMaximoSugerido = 0,
   listaNegativa = 1,
   listaPositiva = 2,

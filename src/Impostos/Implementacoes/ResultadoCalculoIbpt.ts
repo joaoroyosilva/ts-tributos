@@ -14,7 +14,7 @@ export class ResultadoCalculoIbpt implements IResultadoCalculoIbpt {
     public impostoAproximadoImportados: number,
     public baseCalculo: number
   ) {
-    this.tributacaoFederal = impostoAproximadoEstadual;
+    this.tributacaoFederal = impostoAproximadoFederal;
     this.tributacaoFederalImportados = impostoAproximadoImportados;
     this.tributacaoEstadual = impostoAproximadoEstadual;
     this.tributacaoMunicipal = impostoAproximadoMunipio;

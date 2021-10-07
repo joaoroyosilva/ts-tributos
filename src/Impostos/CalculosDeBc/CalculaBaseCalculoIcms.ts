@@ -5,13 +5,14 @@ import { CalculaBaseCalculoBase } from './Base/CalculaBaseCalculoBase';
 export class CalculaBaseCalculoIcms extends CalculaBaseCalculoBase {
   constructor(
     protected tributavel: ITributavel,
-    private tipoDesconto: TipoDesconto
+    protected tipoDesconto: TipoDesconto
   ) {
     super(tributavel);
   }
 
   public calculaBaseDeCalculo(): number {
-    const baseCalculo = super.calculaBaseDeCalculo();
+    const baseCalculo = super.calculaBaseDeCalculo() + this.tributavel.valorIpi;
+
     return this.tipoDesconto === TipoDesconto.condicional
       ? this.calculaIcmsComDescontoCondicional(baseCalculo)
       : this.calculaIcmsComDescontoIncondicional(baseCalculo);

@@ -1,15 +1,15 @@
 export enum Cst {
-  cst00 = 1,
-  cst10 = 2,
-  cst20 = 3,
-  cst30 = 4,
-  cst40 = 5,
-  cst41 = 6,
-  cst50 = 7,
-  cst51 = 8,
-  cst60 = 9,
-  cst70 = 10,
-  cst90 = 11,
+  cst00 = 0,
+  cst10 = 10,
+  cst20 = 20,
+  cst30 = 30,
+  cst40 = 40,
+  cst41 = 41,
+  cst50 = 50,
+  cst51 = 51,
+  cst60 = 60,
+  cst70 = 70,
+  cst90 = 90,
 }
 
 export const CstLabel = new Map<number, string>([
