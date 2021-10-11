@@ -1,0 +1,34 @@
+import { ModalidadeDeterminacaoBcIcms } from '../../Flags/ModalidadeDeterminacaoBcIcms';
+import { ModalidadeDeterminacaoBcIcmsSt } from '../../Flags/ModalidadeDeterminacaoBcIcmsSt';
+import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
+import { TipoDesconto } from '../../Flags/TipoDesconto';
+import { ITributavel } from '../ITributavel';
+import { CstBase } from './Base/CstBase';
+export declare class Cst90 extends CstBase {
+    modalidadeDeterminacaoBcIcms: ModalidadeDeterminacaoBcIcms;
+    modalidadeDeterminacaoBcIcmsSt: ModalidadeDeterminacaoBcIcmsSt;
+    valorBcIcms: number;
+    percentualReducaoIcmsBc: number;
+    percentualIcms: number;
+    valorIcms: number;
+    percentualMva: number;
+    percentualReducaoSt: number;
+    valorBcIcmsSt: number;
+    percentualIcmsSt: number;
+    valorIcmsSt: number;
+    percentualCredito: number;
+    valorCredito: number;
+    valorBcFcp: number;
+    percentualFcp: number;
+    valorFcp: number;
+    valorBcFcpSt: number;
+    percentualFcpSt: number;
+    valorFcpSt: number;
+    constructor(origemMercadoria?: OrigemMercadoria, tipoDesconto?: TipoDesconto);
+    calcula(tributavel: ITributavel): void;
+    private calculaCredito;
+    private calculaIcmsSt;
+    private calculaIcms;
+    private calculaFcp;
+    private calculaFcpSt;
+}
