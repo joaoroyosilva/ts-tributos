@@ -3,13 +3,20 @@
   "compilerOptions": {
     "allowJs": true,
     "downlevelIteration": true,
-    "module": "es2020",
-    "outDir": "./dist/out-tsc",
     "sourceMap": true,
-    "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "esModuleInterop": true
-  }
+    "incremental": true,            
+    "target": "es5",               
+    "module": "commonjs",            
+    "declaration": true,         
+    "outDir": "lib",               
+    "esModuleInterop": true,      
+    "skipLibCheck": true,          
+    "forceConsistentCasingInFileNames": true 
+  },
+  "include": [
+    "src"
+  ]
 }
