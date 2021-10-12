@@ -8,15 +8,26 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,            
-    "target": "es5",               
-    "module": "commonjs",            
+    "target": "es2015",               
+    "module": "es2015",            
     "declaration": true,         
-    "outDir": "lib",               
+    "outDir": "./build",               
     "esModuleInterop": true,      
     "skipLibCheck": true,          
-    "forceConsistentCasingInFileNames": true 
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "stripInternal": true,
+    "rootDir": ".",
+    "lib": ["es2015", "dom"],
+  },
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "flatModuleOutFile": "ts-tributos.js",
+    "flatModuleId": "ts-tributos",
   },
   "include": [
     "src"
-  ]
+  ],
+  "files": ["./index.ts"]
 }

@@ -1,8 +1,9 @@
 {
   "name": "ts-tributos",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Lib para cálculo de tributos",
-  "main": "index.js",
+  "main": "./build/index.js",
+  "sideEffects": false,
   "scripts": {
     "test": "jest",
     "build": "npx tsc"

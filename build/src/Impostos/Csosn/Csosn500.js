@@ -1,0 +1,15 @@
+import { Csosn } from '../../Flags/Csosn';
+import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
+import { TipoDesconto } from '../../Flags/TipoDesconto';
+import { CsosnBase } from './Base/CsosnBase';
+export class Csosn500 extends CsosnBase {
+    constructor(origemMercadoria = OrigemMercadoria.nacional, tipoDesconto = TipoDesconto.incondicional) {
+        super(origemMercadoria, tipoDesconto);
+        this.csosn = Csosn.csosn500;
+    }
+    calcula(tributavel) {
+        this.percentualSt =
+            tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+    }
+}
+//# sourceMappingURL=Csosn500.js.map
