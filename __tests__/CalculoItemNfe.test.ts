@@ -24,7 +24,7 @@ describe('Testa calculo de item nfe', () => {
     produto.percentualCofins = 3.0;
     produto.percentualPis = 1.65;
 
-    produto.cstIpi = CstIpi.cst00;
+    produto.cstIpi = CstIpi.cst50;
     produto.percentualIpi = 5.0;
 
     const utils = new Utils();
@@ -89,7 +89,7 @@ describe('Testa calculo de item nfe', () => {
     produto.percentualCofins = 3.0;
     produto.percentualPis = 1.65;
 
-    produto.cstIpi = CstIpi.cst00;
+    produto.cstIpi = CstIpi.cst50;
     produto.percentualIpi = 5.0;
 
     produto.percentualFcp = 2;
