@@ -5,8 +5,9 @@ import { Utils } from '../src/utils/Utils';
 describe('Testa Calculo fcp', () => {
   test('calcula fcp', () => {
     let produto = new Produto();
-    produto.percentualFcp = 10;
-    produto.valorProduto = 1000;
+    produto.percentualFcp = 2;
+    produto.valorProduto = 90;
+    produto.desconto = 2.9;
     produto.quantidadeProduto = 1;
 
     const utils = new Utils();
@@ -15,6 +16,6 @@ describe('Testa Calculo fcp', () => {
 
     const resultadoCalculoFcp = facade.calculaFcp();
 
-    expect(utils.round(resultadoCalculoFcp.valor)).toBe(100);
+    expect(utils.round(resultadoCalculoFcp.valor)).toBe(1.74);
   });
 });

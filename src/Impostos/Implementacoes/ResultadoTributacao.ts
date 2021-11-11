@@ -99,7 +99,8 @@ export class ResultadoTributacao {
     private produto: ITributavelProduto,
     private crtEmpresa: Crt,
     private tipoOperacao: TipoOperacao,
-    private tipoPessoa: TipoPessoa
+    private tipoPessoa: TipoPessoa,
+    private tipoDesconto: TipoDesconto = TipoDesconto.incondicional
   ) {}
 
   public calcular(): ResultadoTributacao {
@@ -369,7 +370,7 @@ export class ResultadoTributacao {
   }
 
   private calcularIpi() {
-    this.ipi = new TributacaoIpi(this.produto, TipoDesconto.condicional);
+    this.ipi = new TributacaoIpi(this.produto, this.tipoDesconto);
     this.valorBcIpi = 0;
     this.valorIpi = 0;
 
@@ -386,7 +387,7 @@ export class ResultadoTributacao {
   }
 
   private calcularPis() {
-    this.pis = new TributacaoPis(this.produto, TipoDesconto.condicional);
+    this.pis = new TributacaoPis(this.produto, this.tipoDesconto);
     this.valorBcPis = 0;
     this.valorPis = 0;
 
@@ -401,7 +402,7 @@ export class ResultadoTributacao {
   }
 
   private calcularCofins() {
-    this.cofins = new TributacaoCofins(this.produto, TipoDesconto.condicional);
+    this.cofins = new TributacaoCofins(this.produto, this.tipoDesconto);
     this.valorBcCofins = 0;
     this.valorCofins = 0;
 
@@ -416,7 +417,7 @@ export class ResultadoTributacao {
   }
 
   private calcularIssqn(calcularRetencao: boolean) {
-    this.issqn = new TributacaoIssqn(this.produto, TipoDesconto.condicional);
+    this.issqn = new TributacaoIssqn(this.produto, this.tipoDesconto);
     const result = this.issqn.calcula(calcularRetencao);
 
     this.baseCalculoInss = result.baseCalculoInss;
@@ -430,10 +431,7 @@ export class ResultadoTributacao {
   }
 
   private calcularFcp(): void {
-    this.tributacaoFcp = new TributacaoFcp(
-      this.produto,
-      TipoDesconto.condicional
-    );
+    this.tributacaoFcp = new TributacaoFcp(this.produto, this.tipoDesconto);
     this.fcp = 0;
     this.valorBcFcp = 0;
 
@@ -448,7 +446,7 @@ export class ResultadoTributacao {
         ? this.produto.cst
         : this.produto.csosn;
 
-    this.difal = new TributacaoDifal(this.produto, TipoDesconto.condicional);
+    this.difal = new TributacaoDifal(this.produto, this.tipoDesconto);
     this.valorBcDifal = 0;
     this.valorDifal = 0;
     this.valorIcmsOrigem = 0;

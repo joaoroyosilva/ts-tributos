@@ -29,11 +29,12 @@ import { TributacaoIpi } from '../Tributacoes/TributacaoIpi';
 import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
 export class ResultadoTributacao {
-    constructor(produto, crtEmpresa, tipoOperacao, tipoPessoa) {
+    constructor(produto, crtEmpresa, tipoOperacao, tipoPessoa, tipoDesconto = TipoDesconto.incondicional) {
         this.produto = produto;
         this.crtEmpresa = crtEmpresa;
         this.tipoOperacao = tipoOperacao;
         this.tipoPessoa = tipoPessoa;
+        this.tipoDesconto = tipoDesconto;
     }
     calcular() {
         if (this.produto.isServico) {
@@ -243,7 +244,7 @@ export class ResultadoTributacao {
         }
     }
     calcularIpi() {
-        this.ipi = new TributacaoIpi(this.produto, TipoDesconto.condicional);
+        this.ipi = new TributacaoIpi(this.produto, this.tipoDesconto);
         this.valorBcIpi = 0;
         this.valorIpi = 0;
         if (this.produto.cstIpi == CstIpi.cst00 ||
@@ -256,7 +257,7 @@ export class ResultadoTributacao {
         }
     }
     calcularPis() {
-        this.pis = new TributacaoPis(this.produto, TipoDesconto.condicional);
+        this.pis = new TributacaoPis(this.produto, this.tipoDesconto);
         this.valorBcPis = 0;
         this.valorPis = 0;
         if (this.produto.cstPisCofins == CstPisCofins.cst01 ||
@@ -267,7 +268,7 @@ export class ResultadoTributacao {
         }
     }
     calcularCofins() {
-        this.cofins = new TributacaoCofins(this.produto, TipoDesconto.condicional);
+        this.cofins = new TributacaoCofins(this.produto, this.tipoDesconto);
         this.valorBcCofins = 0;
         this.valorCofins = 0;
         if (this.produto.cstPisCofins == CstPisCofins.cst01 ||
@@ -278,7 +279,7 @@ export class ResultadoTributacao {
         }
     }
     calcularIssqn(calcularRetencao) {
-        this.issqn = new TributacaoIssqn(this.produto, TipoDesconto.condicional);
+        this.issqn = new TributacaoIssqn(this.produto, this.tipoDesconto);
         const result = this.issqn.calcula(calcularRetencao);
         this.baseCalculoInss = result.baseCalculoInss;
         this.baseCalculoIrrf = result.baseCalculoIrrf;
@@ -290,7 +291,7 @@ export class ResultadoTributacao {
         this.valorIss = result.valor;
     }
     calcularFcp() {
-        this.tributacaoFcp = new TributacaoFcp(this.produto, TipoDesconto.condicional);
+        this.tributacaoFcp = new TributacaoFcp(this.produto, this.tipoDesconto);
         this.fcp = 0;
         this.valorBcFcp = 0;
         const result = this.tributacaoFcp.calcula();
@@ -301,7 +302,7 @@ export class ResultadoTributacao {
         const cstCsosn = Crt.regimeNormal === this.crtEmpresa
             ? this.produto.cst
             : this.produto.csosn;
-        this.difal = new TributacaoDifal(this.produto, TipoDesconto.condicional);
+        this.difal = new TributacaoDifal(this.produto, this.tipoDesconto);
         this.valorBcDifal = 0;
         this.valorDifal = 0;
         this.valorIcmsOrigem = 0;
