@@ -1,5 +1,6 @@
 import { Produto } from '../src/Entidade/produto';
 import { FacadeCalculadoraTributacao } from '../src/Facade/FacadeCalculadoraTributacao';
+import { Documento } from '../src/Flags/Documento';
 import { TipoDesconto } from '../src/Flags/TipoDesconto';
 import { Utils } from '../src/utils/Utils';
 
@@ -88,5 +89,20 @@ describe('Testa cálculo de ipi', () => {
 
     expect(new Utils().round(resultadoCalculoIpi.baseCalculo)).toBe(5612.33);
     expect(new Utils().round(resultadoCalculoIpi.valor)).toBe(673.48);
+  });
+
+  test('calcula ipi com quantidade um para NFC-e', () => {
+    let produto = new Produto();
+    produto.documento = Documento.NFCe;
+    produto.quantidadeProduto = 1;
+    produto.valorProduto = 1000;
+    produto.percentualIpi = 17;
+
+    const facade = new FacadeCalculadoraTributacao(produto);
+
+    const resultadoCalculoIpi = facade.calculaIpi();
+
+    expect(new Utils().round(resultadoCalculoIpi.baseCalculo)).toBe(0);
+    expect(new Utils().round(resultadoCalculoIpi.valor)).toBe(0);
   });
 });
