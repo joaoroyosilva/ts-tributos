@@ -10,8 +10,10 @@ export class TributacaoPis {
         return this.calculaPis();
     }
     calculaPis() {
-        const baseCalculo = this.calculaBaseCalculoPis.calculaBaseDeCalculo() +
-            this.tributavel.valorIpi;
+        const baseCalculo = this.tributavel.icmsSobreIpi
+            ? this.calculaBaseCalculoPis.calculaBaseDeCalculo() +
+                this.tributavel.valorIpi
+            : this.calculaBaseCalculoPis.calculaBaseDeCalculo();
         const valorPis = this.calculaValorPis(baseCalculo);
         return new ResultadoCalculoPis(baseCalculo, valorPis);
     }

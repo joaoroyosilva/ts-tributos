@@ -21,10 +21,7 @@ export class TributacaoCofins {
   }
 
   private calculaCofins(): IResultadoCalculoCofins {
-    const baseCalculo = this.tributavel.icmsSobreIpi
-      ? this.calculaBaseCalculoCofins.calculaBaseDeCalculo() +
-        this.tributavel.valorIpi
-      : this.calculaBaseCalculoCofins.calculaBaseDeCalculo();
+    const baseCalculo = this.calculaBaseCalculoCofins.calculaBaseDeCalculo();
 
     const valorCofins = this.calculaValorCofins(baseCalculo);
 

@@ -10,8 +10,10 @@ export class TributacaoCofins {
         return this.calculaCofins();
     }
     calculaCofins() {
-        const baseCalculo = this.calculaBaseCalculoCofins.calculaBaseDeCalculo() +
-            this.tributavel.valorIpi;
+        const baseCalculo = this.tributavel.icmsSobreIpi
+            ? this.calculaBaseCalculoCofins.calculaBaseDeCalculo() +
+                this.tributavel.valorIpi
+            : this.calculaBaseCalculoCofins.calculaBaseDeCalculo();
         const valorCofins = this.calculaValorCofins(baseCalculo);
         return new ResultadoCalculoCofins(baseCalculo, valorCofins);
     }

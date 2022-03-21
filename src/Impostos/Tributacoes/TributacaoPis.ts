@@ -21,10 +21,7 @@ export class TributacaoPis {
   }
 
   private calculaPis(): IResultadoCalculoPis {
-    const baseCalculo = this.tributavel.icmsSobreIpi
-      ? this.calculaBaseCalculoPis.calculaBaseDeCalculo() +
-        this.tributavel.valorIpi
-      : this.calculaBaseCalculoPis.calculaBaseDeCalculo();
+    const baseCalculo = this.calculaBaseCalculoPis.calculaBaseDeCalculo();
 
     const valorPis = this.calculaValorPis(baseCalculo);
 
