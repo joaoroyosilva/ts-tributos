@@ -17,6 +17,21 @@ describe('Testa Cst00', () => {
     expect(cst.valorIcms).toBe(180);
   });
 
+  test('calcula icms com ipi', () => {
+    let produto = new Produto();
+    produto.quantidadeProduto = 1;
+    produto.valorProduto = 1000;
+    produto.percentualIcms = 18;
+    produto.valorIpi = 50;
+    produto.icmsSobreIpi = true;
+
+    const cst = new Cst00();
+    cst.calcula(produto);
+
+    expect(cst.valorBcIcms).toBe(1050);
+    expect(cst.valorIcms).toBe(189);
+  });
+
   test('calcula icms com desconto condicional', () => {
     let produto = new Produto();
     produto.quantidadeProduto = 1;

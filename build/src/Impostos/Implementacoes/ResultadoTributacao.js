@@ -44,10 +44,10 @@ export class ResultadoTributacao {
             this.calcularIssqn(calcularRetencao);
         }
         else {
+            this.calcularIpi();
             this.calcularIcms();
             this.calcularDifal();
             this.calcularFcp();
-            this.calcularIpi();
         }
         this.calcularPis();
         this.calcularCofins();
