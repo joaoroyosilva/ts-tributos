@@ -74,4 +74,5 @@ export declare class ResultadoTributacao {
     private calcularDifal;
     private calculaIbpt;
     private cstGeraDifal;
+    private csosnGeraDifal;
 }

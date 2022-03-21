@@ -11,7 +11,7 @@ export declare class Cst00 extends CstBase {
     percentualIcms: number;
     valorIcms: number;
     percentualFcp: number;
-    valorFcfp: number;
+    valorFcp: number;
     constructor(origemMercadoria?: OrigemMercadoria, tipoDesconto?: TipoDesconto);
     calcula(tributavel: ITributavel): void;
 }

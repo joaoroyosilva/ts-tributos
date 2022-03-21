@@ -27,8 +27,8 @@ export class Cst90 extends CstBase {
             case Documento.CTeOs:
             case Documento.NFe:
                 const facade = new FacadeCalculadoraTributacao(tributavel, this.tipoDesconto);
-                const resutladoCalculaCredito = facade.calculaIcmsCredito();
-                this.valorCredito = resutladoCalculaCredito.valor;
+                const resultadoCalculoCredito = facade.calculaIcmsCredito();
+                this.valorCredito = resultadoCalculoCredito.valor;
                 break;
             case Documento.CTe:
                 const resultadoIcms = new FacadeCalculadoraTributacao(tributavel, this.tipoDesconto).calculaIcms();

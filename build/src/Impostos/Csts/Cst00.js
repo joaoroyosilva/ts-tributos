@@ -18,7 +18,7 @@ export class Cst00 extends CstBase {
         this.percentualIcms = tributavel.percentualIcms;
         this.valorIcms = resultadoCalculoIcms.valor;
         this.percentualFcp = tributavel.percentualFcp;
-        this.valorFcfp = resultacoCalculoFcp.valor;
+        this.valorFcp = resultacoCalculoFcp.valor;
     }
 }
 //# sourceMappingURL=Cst00.js.map

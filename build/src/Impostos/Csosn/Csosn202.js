@@ -2,10 +2,12 @@ import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTribu
 import { Csosn } from '../../Flags/Csosn';
 import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
+import { ModalidadeDeterminacaoBcIcmsSt } from '../../Flags/ModalidadeDeterminacaoBcIcmsSt';
 import { Csosn102 } from './Csosn102';
 export class Csosn202 extends Csosn102 {
     constructor(origemMercadoria = OrigemMercadoria.nacional, tipoDesconto = TipoDesconto.incondicional) {
         super(origemMercadoria, tipoDesconto);
+        this.modalidadeDeterminacaoBcIcmsSt = ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado;
         this.csosn = Csosn.csosn202;
     }
     calcula(tributavel) {

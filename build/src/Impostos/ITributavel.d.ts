@@ -10,6 +10,7 @@ export interface ITributavel {
     cstPisCofins: CstPisCofins;
     cstIpi: CstIpi;
     isServico: boolean;
+    icmsSobreIpi: boolean;
     valorProduto: number;
     frete: number;
     seguro: number;

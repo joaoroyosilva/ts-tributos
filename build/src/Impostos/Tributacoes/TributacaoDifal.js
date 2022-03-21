@@ -9,9 +9,9 @@ export class TributacaoDifal {
         this.tributacaoFcp = new TributacaoFcp(tributavel, tipoDesconto);
     }
     calcula() {
-        return this.calculaIcms();
+        return this.calculaDifal();
     }
-    calculaIcms() {
+    calculaDifal() {
         const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
         const resultadoFcfp = this.tributacaoFcp.calcula();
         const difal = this.calcularDifal(baseCalculo);

@@ -2,6 +2,7 @@ import { Documento } from '../../src/Flags/Documento';
 export class Produto {
     constructor() {
         this.documento = Documento.NFe;
+        this.icmsSobreIpi = false;
         this.valorProduto = 0;
         this.frete = 0;
         this.seguro = 0;

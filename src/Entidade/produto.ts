@@ -12,7 +12,7 @@ export class Produto implements ITributavelProduto {
   public cstPisCofins: CstPisCofins;
   public cstIpi: CstIpi;
   public isServico: boolean;
-  public ipiSobreIcms: boolean = false;
+  public icmsSobreIpi: boolean = false;
   public valorProduto: number = 0;
   public frete: number = 0;
   public seguro: number = 0;

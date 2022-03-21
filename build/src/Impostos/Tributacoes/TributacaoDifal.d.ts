@@ -8,6 +8,6 @@ export declare class TributacaoDifal {
     private tributacaoFcp;
     constructor(tributavel: ITributavel, tipoDesconto: TipoDesconto);
     calcula(): IResultadoCalculoDifal;
-    private calculaIcms;
+    private calculaDifal;
     private calcularDifal;
 }

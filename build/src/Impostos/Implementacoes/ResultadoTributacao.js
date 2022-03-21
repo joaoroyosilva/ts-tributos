@@ -10,6 +10,7 @@ import { TipoPessoa } from '../../Flags/TipoPessoa';
 import { Csosn101 } from '../Csosn/Csosn101';
 import { Csosn201 } from '../Csosn/Csosn201';
 import { Csosn202 } from '../Csosn/Csosn202';
+import { Csosn203 } from '../Csosn/Csosn203';
 import { Csosn900 } from '../Csosn/Csosn900';
 import { Cst00 } from '../Csts/Cst00';
 import { Cst10 } from '../Csts/Cst10';
@@ -185,19 +186,10 @@ export class ResultadoTributacao {
                             break;
                     }
                     break;
-                case Csosn.csosn202 || Csosn.csosn203:
+                case Csosn.csosn202:
                     this.csosnBase = new Csosn202();
                     this.csosnBase.calcula(this.produto);
                     switch (this.csosnBase.modalidadeDeterminacaoBcIcmsSt) {
-                        case ModalidadeDeterminacaoBcIcmsSt.listaNegativa:
-                            //lista Negativa(valor)
-                            break;
-                        case ModalidadeDeterminacaoBcIcmsSt.listaPositiva:
-                            //Lista Positiva(valor)
-                            break;
-                        case ModalidadeDeterminacaoBcIcmsSt.listaNeutra:
-                            //Lista Neutra(valor)
-                            break;
                         case ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado:
                             this.percentualMva = this.csosnBase.percentualMvaSt;
                             this.percentualReducaoSt = this.csosnBase.percentualReducaoSt;
@@ -205,10 +197,20 @@ export class ResultadoTributacao {
                             this.percentualIcmsSt = this.csosnBase.percentualIcmsSt;
                             this.valorIcmsSt = this.csosnBase.valorIcmsSt;
                             break;
-                        case ModalidadeDeterminacaoBcIcmsSt.pauta:
+                        default:
                             break;
-                        case ModalidadeDeterminacaoBcIcmsSt.precoTabeladoOuMaximoSugerido:
-                            //Preço Tabelado ou Máximo Sugerido
+                    }
+                    break;
+                case Csosn.csosn203:
+                    this.csosnBase = new Csosn203();
+                    this.csosnBase.calcula(this.produto);
+                    switch (this.csosnBase.modalidadeDeterminacaoBcIcmsSt) {
+                        case ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado:
+                            this.percentualMva = this.csosnBase.percentualMvaSt;
+                            this.percentualReducaoSt = this.csosnBase.percentualReducaoSt;
+                            this.valorBcIcmsSt = this.csosnBase.valorBcIcmsSt;
+                            this.percentualIcmsSt = this.csosnBase.percentualIcmsSt;
+                            this.valorIcmsSt = this.csosnBase.valorIcmsSt;
                             break;
                         default:
                             break;
@@ -299,16 +301,14 @@ export class ResultadoTributacao {
         this.valorBcFcp = result.baseCalculo;
     }
     calcularDifal() {
-        const cstCsosn = Crt.regimeNormal === this.crtEmpresa
-            ? this.produto.cst
-            : this.produto.csosn;
         this.difal = new TributacaoDifal(this.produto, this.tipoDesconto);
         this.valorBcDifal = 0;
         this.valorDifal = 0;
         this.valorIcmsOrigem = 0;
         this.valorIcmsDestino = 0;
         if (this.tipoOperacao === TipoOperacao.operacaoInterestadual &&
-            this.cstGeraDifal(cstCsosn) &&
+            (this.cstGeraDifal(this.produto.cst) ||
+                this.csosnGeraDifal(this.produto.csosn)) &&
             this.produto.percentualDifalInterna != 0 &&
             this.produto.percentualDifalInterestadual != 0) {
             const result = this.difal.calcula();
@@ -328,15 +328,10 @@ export class ResultadoTributacao {
         this.valorTotalTributos = result.valorTotalTributos;
     }
     cstGeraDifal(cst) {
-        return (cst == 0 ||
-            cst == 20 ||
-            cst == 40 ||
-            cst == 41 ||
-            cst == 60 ||
-            cst == 102 ||
-            cst == 103 ||
-            cst == 400 ||
-            cst == 500);
+        return cst == 0 || cst == 20 || cst == 40 || cst == 41 || cst == 60;
+    }
+    csosnGeraDifal(csosn) {
+        return csosn == 102 || csosn == 103 || csosn == 400 || csosn == 500;
     }
 }
 //# sourceMappingURL=ResultadoTributacao.js.map
