@@ -7,7 +7,9 @@ export class CalculaBaseCalculoCofins extends CalculaBaseCalculoBase {
         this.tipoDesconto = tipoDesconto;
     }
     calculaBaseDeCalculo() {
-        const baseCalculo = super.calculaBaseDeCalculo();
+        const baseCalculo = this.tributavel.icmsSobreIpi
+            ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
+            : super.calculaBaseDeCalculo();
         return this.tipoDesconto === TipoDesconto.condicional
             ? this.calculaIcmsComDescontoCondicional(baseCalculo)
             : this.calculaIcmsComDescontoIncondicional(baseCalculo);
