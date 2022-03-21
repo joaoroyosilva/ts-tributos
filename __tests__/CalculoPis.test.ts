@@ -24,6 +24,7 @@ describe('Testa CalculaPis', () => {
     produto.valorProduto = 1000;
     produto.quantidadeProduto = 1;
     produto.valorIpi = 10;
+    produto.icmsSobreIpi = true;
 
     const utils = new Utils();
 

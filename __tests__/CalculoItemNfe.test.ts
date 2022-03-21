@@ -81,6 +81,7 @@ describe('Testa calculo de item nfe', () => {
     produto.valorProduto = 1000;
     produto.quantidadeProduto = 1.0;
     produto.isServico = false;
+    produto.icmsSobreIpi = false;
 
     produto.cst = Cst.cst00;
     produto.percentualIcms = 17.0;
@@ -115,6 +116,49 @@ describe('Testa calculo de item nfe', () => {
     expect(utils.round(resultado.valorIcmsDestino)).toBe(60);
     expect(utils.round(resultado.valorIcmsOrigem)).toBe(0);
     expect(utils.round(resultado.valorDifal)).toBe(60);
+  });
+
+  test('calcular item com icms com ipi, pis, e difal', () => {
+    let produto = new Produto();
+
+    produto.valorProduto = 1000;
+    produto.quantidadeProduto = 1.0;
+    produto.isServico = false;
+    produto.icmsSobreIpi = true;
+
+    produto.cst = Cst.cst00;
+    produto.percentualIcms = 17.0;
+
+    produto.cstPisCofins = CstPisCofins.cst01;
+    produto.percentualCofins = 3.0;
+    produto.percentualPis = 1.65;
+
+    produto.cstIpi = CstIpi.cst50;
+    produto.percentualIpi = 5.0;
+
+    produto.percentualFcp = 2;
+    produto.percentualDifalInterna = 18;
+    produto.percentualDifalInterestadual = 12;
+
+    const utils = new Utils();
+    const calculo = new ResultadoTributacao(
+      produto,
+      Crt.regimeNormal,
+      TipoOperacao.operacaoInterestadual,
+      TipoPessoa.fisica
+    );
+
+    const resultado = calculo.calcular();
+
+    expect(utils.round(resultado.valorBcIcms)).toBe(1050);
+    expect(utils.round(resultado.valorIcms)).toBe(178.5);
+    expect(utils.round(resultado.valorIpi)).toBe(50);
+    expect(utils.round(resultado.valorCofins)).toBe(31.5);
+    expect(utils.round(resultado.valorPis)).toBe(17.33);
+    expect(utils.round(resultado.fcp)).toBe(21);
+    expect(utils.round(resultado.valorIcmsDestino)).toBe(63);
+    expect(utils.round(resultado.valorIcmsOrigem)).toBe(0);
+    expect(utils.round(resultado.valorDifal)).toBe(63);
   });
 
   test('calcular item servico', () => {

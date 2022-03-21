@@ -30,8 +30,8 @@ describe('Testa CalculaCofins', () => {
     const facade = new FacadeCalculadoraTributacao(produto);
 
     const resultadoCalculoCofins = facade.calculaCofins();
-    expect(utils.round(resultadoCalculoCofins.baseCalculo)).toBe(1010);
-    expect(utils.round(resultadoCalculoCofins.valor)).toBe(6.57);
+    expect(utils.round(resultadoCalculoCofins.baseCalculo)).toBe(1000);
+    expect(utils.round(resultadoCalculoCofins.valor)).toBe(6.5);
   });
 
   test('testa calcula cofins com ipi zero', () => {

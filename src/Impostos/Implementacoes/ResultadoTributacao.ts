@@ -390,6 +390,7 @@ export class ResultadoTributacao {
       const result = this.ipi.calcula();
       this.valorBcIpi = result.baseCalculo;
       this.valorIpi = result.valor;
+      this.produto.valorIpi = result.valor;
     }
   }
 
