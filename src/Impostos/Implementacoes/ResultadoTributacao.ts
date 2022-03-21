@@ -11,6 +11,7 @@ import { CsosnBase } from '../Csosn/Base/CsosnBase';
 import { Csosn101 } from '../Csosn/Csosn101';
 import { Csosn201 } from '../Csosn/Csosn201';
 import { Csosn202 } from '../Csosn/Csosn202';
+import { Csosn203 } from '../Csosn/Csosn203';
 import { Csosn900 } from '../Csosn/Csosn900';
 import { CstBase } from '../Csts/Base/CstBase';
 import { Cst00 } from '../Csts/Cst00';
@@ -292,20 +293,11 @@ export class ResultadoTributacao {
           }
           break;
 
-        case Csosn.csosn202 || Csosn.csosn203:
+        case Csosn.csosn202:
           this.csosnBase = new Csosn202();
           this.csosnBase.calcula(this.produto);
 
           switch ((this.csosnBase as Csosn202).modalidadeDeterminacaoBcIcmsSt) {
-            case ModalidadeDeterminacaoBcIcmsSt.listaNegativa:
-              //lista Negativa(valor)
-              break;
-            case ModalidadeDeterminacaoBcIcmsSt.listaPositiva:
-              //Lista Positiva(valor)
-              break;
-            case ModalidadeDeterminacaoBcIcmsSt.listaNeutra:
-              //Lista Neutra(valor)
-              break;
             case ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado:
               this.percentualMva = (this.csosnBase as Csosn202).percentualMvaSt;
               this.percentualReducaoSt = (
@@ -317,11 +309,26 @@ export class ResultadoTributacao {
               ).percentualIcmsSt;
               this.valorIcmsSt = (this.csosnBase as Csosn202).valorIcmsSt;
               break;
-
-            case ModalidadeDeterminacaoBcIcmsSt.pauta:
+            default:
               break;
-            case ModalidadeDeterminacaoBcIcmsSt.precoTabeladoOuMaximoSugerido:
-              //Preço Tabelado ou Máximo Sugerido
+          }
+          break;
+
+        case Csosn.csosn203:
+          this.csosnBase = new Csosn203();
+          this.csosnBase.calcula(this.produto);
+
+          switch ((this.csosnBase as Csosn203).modalidadeDeterminacaoBcIcmsSt) {
+            case ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado:
+              this.percentualMva = (this.csosnBase as Csosn202).percentualMvaSt;
+              this.percentualReducaoSt = (
+                this.csosnBase as Csosn202
+              ).percentualReducaoSt;
+              this.valorBcIcmsSt = (this.csosnBase as Csosn202).valorBcIcmsSt;
+              this.percentualIcmsSt = (
+                this.csosnBase as Csosn202
+              ).percentualIcmsSt;
+              this.valorIcmsSt = (this.csosnBase as Csosn202).valorIcmsSt;
               break;
             default:
               break;
@@ -441,11 +448,6 @@ export class ResultadoTributacao {
   }
 
   private calcularDifal(): void {
-    const cstCsosn =
-      Crt.regimeNormal === this.crtEmpresa
-        ? this.produto.cst
-        : this.produto.csosn;
-
     this.difal = new TributacaoDifal(this.produto, this.tipoDesconto);
     this.valorBcDifal = 0;
     this.valorDifal = 0;
@@ -454,7 +456,8 @@ export class ResultadoTributacao {
 
     if (
       this.tipoOperacao === TipoOperacao.operacaoInterestadual &&
-      this.cstGeraDifal(cstCsosn) &&
+      (this.cstGeraDifal(this.produto.cst) ||
+        this.csosnGeraDifal(this.produto.csosn)) &&
       this.produto.percentualDifalInterna != 0 &&
       this.produto.percentualDifalInterestadual != 0
     ) {
@@ -478,16 +481,10 @@ export class ResultadoTributacao {
   }
 
   private cstGeraDifal(cst: number): boolean {
-    return (
-      cst == 0 ||
-      cst == 20 ||
-      cst == 40 ||
-      cst == 41 ||
-      cst == 60 ||
-      cst == 102 ||
-      cst == 103 ||
-      cst == 400 ||
-      cst == 500
-    );
+    return cst == 0 || cst == 20 || cst == 40 || cst == 41 || cst == 60;
+  }
+
+  private csosnGeraDifal(csosn: number): boolean {
+    return csosn == 102 || csosn == 103 || csosn == 400 || csosn == 500;
   }
 }

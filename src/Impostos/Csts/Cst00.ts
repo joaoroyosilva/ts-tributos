@@ -12,7 +12,7 @@ export class Cst00 extends CstBase {
   public percentualIcms: number;
   public valorIcms: number;
   public percentualFcp: number;
-  public valorFcfp: number;
+  public valorFcp: number;
 
   constructor(
     public origemMercadoria: OrigemMercadoria = OrigemMercadoria.nacional,
@@ -35,6 +35,6 @@ export class Cst00 extends CstBase {
     this.percentualIcms = tributavel.percentualIcms;
     this.valorIcms = resultadoCalculoIcms.valor;
     this.percentualFcp = tributavel.percentualFcp;
-    this.valorFcfp = resultacoCalculoFcp.valor;
+    this.valorFcp = resultacoCalculoFcp.valor;
   }
 }

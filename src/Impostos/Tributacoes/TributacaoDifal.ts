@@ -21,10 +21,10 @@ export class TributacaoDifal {
   }
 
   public calcula(): IResultadoCalculoDifal {
-    return this.calculaIcms();
+    return this.calculaDifal();
   }
 
-  private calculaIcms(): ResultadoCalculoDifal {
+  private calculaDifal(): ResultadoCalculoDifal {
     const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
 
     const resultadoFcfp = this.tributacaoFcp.calcula();

@@ -12,6 +12,7 @@ describe('Testa CalculaDifal e FCP', () => {
     produto.outrasDespesas = 80;
     produto.desconto = 10;
     produto.valorIpi = 50;
+    produto.ipiSobreIcms = true;
     produto.percentualFcp = 2;
     produto.percentualDifalInterna = 18;
     produto.percentualDifalInterestadual = 12;

@@ -2,10 +2,13 @@ import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTribu
 import { Csosn } from '../../Flags/Csosn';
 import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
+import { ModalidadeDeterminacaoBcIcmsSt } from '../../Flags/ModalidadeDeterminacaoBcIcmsSt';
 import { ITributavel } from '../ITributavel';
 import { Csosn102 } from './Csosn102';
 
 export class Csosn202 extends Csosn102 {
+  public modalidadeDeterminacaoBcIcmsSt: ModalidadeDeterminacaoBcIcmsSt =
+    ModalidadeDeterminacaoBcIcmsSt.margemValorAgregado;
   public percentualMvaSt: number;
   public percentualReducaoSt: number;
   public valorBcIcmsSt: number;

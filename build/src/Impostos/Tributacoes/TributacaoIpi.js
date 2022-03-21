@@ -1,5 +1,6 @@
 import { CalculaBaseCalculoIpi } from '../CalculosDeBc/CalculaBaseCalculoIpi';
 import { ResultadoCalculoIpi } from '../Implementacoes/ResultadoCalculoIpi';
+import { Documento } from '../../Flags/Documento';
 export class TributacaoIpi {
     constructor(tributavel, tipoDesconto) {
         this.tributavel = tributavel;
@@ -12,6 +13,9 @@ export class TributacaoIpi {
     calculaIpi() {
         const baseCalculo = this.calculaBaseCalculoIpi.calculaBaseDeCalculo();
         const valorIpi = this.calculaValorIpi(baseCalculo);
+        if (this.tributavel.documento == Documento.NFCe) {
+            return new ResultadoCalculoIpi(0, 0);
+        }
         return new ResultadoCalculoIpi(baseCalculo, valorIpi);
     }
     calculaValorIpi(baseCalculo) {

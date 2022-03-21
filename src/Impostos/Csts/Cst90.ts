@@ -60,9 +60,9 @@ export class Cst90 extends CstBase {
           tributavel,
           this.tipoDesconto
         );
-        const resutladoCalculaCredito = facade.calculaIcmsCredito();
+        const resultadoCalculoCredito = facade.calculaIcmsCredito();
 
-        this.valorCredito = resutladoCalculaCredito.valor;
+        this.valorCredito = resultadoCalculoCredito.valor;
         break;
       case Documento.CTe:
         const resultadoIcms = new FacadeCalculadoraTributacao(

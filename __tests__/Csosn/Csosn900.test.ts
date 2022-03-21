@@ -11,6 +11,7 @@ describe('testa Csosn900', () => {
     produto.percentualCredito = 17;
     produto.percentualIcms = 18;
     produto.percentualIcmsSt = 18;
+    produto.ipiSobreIcms = true;
     produto.percentualIpi = 15;
     produto.percentualMva = 40;
 
@@ -37,6 +38,7 @@ describe('testa Csosn900', () => {
     produto.percentualCredito = 17;
     produto.percentualIcms = 18;
     produto.percentualIcmsSt = 18;
+    produto.ipiSobreIcms = true;
     produto.percentualIpi = 15;
     produto.percentualMva = 40;
 
@@ -61,6 +63,7 @@ describe('testa Csosn900', () => {
     produto.valorProduto = 2000;
     produto.percentualCredito = 17;
     produto.percentualIcms = 18;
+    produto.ipiSobreIcms = true;
     produto.percentualIcmsSt = 18;
     produto.percentualIpi = 15;
     produto.percentualMva = 40;
