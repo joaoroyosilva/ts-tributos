@@ -1,3 +1,4 @@
+import { TipoCalculoIcmsDesonerado } from '../../Flags/TipoCalculoIcmsDesonerado';
 import { Crt } from '../../Flags/Crt';
 import { Csosn } from '../../Flags/Csosn';
 import { Cst } from '../../Flags/Cst';
@@ -32,6 +33,7 @@ import { TributacaoIbpt } from '../Tributacoes/TributacaoIbpt';
 import { TributacaoIpi } from '../Tributacoes/TributacaoIpi';
 import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
+import { Cst40 } from '../Csts/Cst40';
 
 export class ResultadoTributacao {
   // impostos privados
@@ -101,7 +103,8 @@ export class ResultadoTributacao {
     private crtEmpresa: Crt,
     private tipoOperacao: TipoOperacao,
     private tipoPessoa: TipoPessoa,
-    private tipoDesconto: TipoDesconto = TipoDesconto.incondicional
+    private tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
+    private tipoCalculoIcmsDesonerado: TipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
   ) {}
 
   public calcular(): ResultadoTributacao {
@@ -158,6 +161,7 @@ export class ResultadoTributacao {
           this.percentualIcms = (this.icms as Cst20).percentualIcms;
           this.valorIcms = (this.icms as Cst20).valorIcms;
           this.percentualReducao = (this.icms as Cst20).percentualReducao;
+          this.valorIcmsDesonerado = (this.icms as Cst20).valorIcmsDesonerado;
           break;
 
         case Cst.cst30:
@@ -169,6 +173,12 @@ export class ResultadoTributacao {
           this.valorBcIcmsSt = (this.icms as Cst30).valorBcIcmsSt;
           this.percentualIcmsSt = (this.icms as Cst30).percentualIcmsSt;
           this.valorIcmsSt = (this.icms as Cst30).valorIcmsSt;
+          this.valorIcmsDesonerado = (this.icms as Cst30).valorIcmsDesonerado;
+        case Cst.cst40:
+          this.icms = new Cst40();
+          this.icms.calcula(this.produto);
+          this.valorIcmsDesonerado = (this.icms as Cst40).valorIcmsDesonerado;
+          break;
 
         case Cst.cst41:
           this.icms = new Cst41();
@@ -208,6 +218,8 @@ export class ResultadoTributacao {
           this.icms.calcula(this.produto);
 
           this.percentualReducao = (this.icms as Cst70).percentualReducao;
+          this.valorIcmsDesonerado = (this.icms as Cst70).valorIcmsDesonerado;
+
           break;
 
         case Cst.cst90:

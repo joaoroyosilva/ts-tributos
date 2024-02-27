@@ -1,3 +1,4 @@
+import { IResultadoCalculoIcmsDesonerado } from '../Impostos/IResultadoCalculoIcmsDesonerado';
 import { TipoDesconto } from '../Flags/TipoDesconto';
 import { IIbpt } from '../Impostos/IIbpt';
 import { IResultadoCalculoCofins } from '../Impostos/IResultadoCalculoCofins';
@@ -21,11 +22,14 @@ import { TributacaoIcms } from '../Impostos/Tributacoes/TributacaoIcms';
 import { TributacaoIcmsSt } from '../Impostos/Tributacoes/TributacaoIcmsSt';
 import { TributacaoIpi } from '../Impostos/Tributacoes/TributacaoIpi';
 import { TributacaoPis } from '../Impostos/Tributacoes/TributacaoPis';
+import { TributacaoIcmsDesonerado } from '../Impostos/Tributacoes/TributacaoIcmsDesonerado';
+import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
 
 export class FacadeCalculadoraTributacao {
   constructor(
     private tributavel: ITributavel,
-    private tipoDesconto: TipoDesconto = TipoDesconto.incondicional
+    private tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
+    private tipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
   ) {}
 
   public calculaIcms(): IResultadoCalculoIcms {
@@ -65,6 +69,14 @@ export class FacadeCalculadoraTributacao {
 
   public calculaFcp(): IResultadoCalculoFcp {
     return new TributacaoFcp(this.tributavel, this.tipoDesconto).calcula();
+  }
+
+  public calculaIcmsDesonerado(): IResultadoCalculoIcmsDesonerado {
+    return new TributacaoIcmsDesonerado(
+      this.tributavel,
+      this.tipoDesconto,
+      this.tipoCalculoIcmsDesonerado
+    ).calcula();
   }
 
   public calculaFcpSt(): IResultadoCalculoFcpSt {

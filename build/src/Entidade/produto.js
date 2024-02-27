@@ -1,4 +1,4 @@
-import { Documento } from '../../src/Flags/Documento';
+import { Documento } from '../Flags/Documento';
 export class Produto {
     constructor() {
         this.documento = Documento.NFe;

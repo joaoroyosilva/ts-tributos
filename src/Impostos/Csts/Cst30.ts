@@ -1,3 +1,4 @@
+import { TipoCalculoIcmsDesonerado } from '../../Flags/TipoCalculoIcmsDesonerado';
 import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTributacao';
 import { Cst } from '../../Flags/Cst';
 import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
@@ -14,10 +15,12 @@ export class Cst30 extends CstBase {
   public valorBcFcpSt: number;
   public percentualFcpSt: number;
   public valorFcpSt: number;
+  public valorIcmsDesonerado: number;
 
   constructor(
     public origemMercadoria: OrigemMercadoria = OrigemMercadoria.nacional,
-    public tipoDesconto: TipoDesconto = TipoDesconto.incondicional
+    public tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
+    public tipoCalculoIcmsDesonerado: TipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
   ) {
     super(origemMercadoria, tipoDesconto);
     this.cst = Cst.cst30;
@@ -45,5 +48,11 @@ export class Cst30 extends CstBase {
 
     this.valorBcFcpSt = resultadoCalculoFcfpSt.baseCalculoFcpSt;
     this.valorFcpSt = resultadoCalculoFcfpSt.valorFcpSt;
+
+    this.valorIcmsDesonerado = new FacadeCalculadoraTributacao(
+      tributavel,
+      this.tipoDesconto,
+      this.tipoCalculoIcmsDesonerado
+    ).calculaIcmsDesonerado().valor;
   }
 }

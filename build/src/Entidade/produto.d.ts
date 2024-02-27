@@ -1,8 +1,8 @@
-import { Cst } from '../../src/Flags/Cst';
-import { CstIpi } from '../../src/Flags/CstIpi';
-import { CstPisCofins } from '../../src/Flags/CstPisCofins';
-import { Documento } from '../../src/Flags/Documento';
-import { ITributavelProduto } from '../../src/Impostos/ITributavelProduto';
+import { Cst } from '../Flags/Cst';
+import { CstIpi } from '../Flags/CstIpi';
+import { CstPisCofins } from '../Flags/CstPisCofins';
+import { Documento } from '../Flags/Documento';
+import { ITributavelProduto } from '../Impostos/ITributavelProduto';
 import { Csosn } from '../Flags/Csosn';
 export declare class Produto implements ITributavelProduto {
     documento: Documento;

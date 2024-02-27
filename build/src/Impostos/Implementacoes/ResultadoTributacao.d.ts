@@ -1,3 +1,4 @@
+import { TipoCalculoIcmsDesonerado } from '../../Flags/TipoCalculoIcmsDesonerado';
 import { Crt } from '../../Flags/Crt';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
 import { TipoOperacao } from '../../Flags/TipoOperacao';
@@ -9,6 +10,7 @@ export declare class ResultadoTributacao {
     private tipoOperacao;
     private tipoPessoa;
     private tipoDesconto;
+    private tipoCalculoIcmsDesonerado;
     private icms;
     private csosnBase;
     private pis;
@@ -63,7 +65,7 @@ export declare class ResultadoTributacao {
     valorTributacaoEstadual: number;
     valorTributacaoMunicipal: number;
     valorTotalTributos: number;
-    constructor(produto: ITributavelProduto, crtEmpresa: Crt, tipoOperacao: TipoOperacao, tipoPessoa: TipoPessoa, tipoDesconto?: TipoDesconto);
+    constructor(produto: ITributavelProduto, crtEmpresa: Crt, tipoOperacao: TipoOperacao, tipoPessoa: TipoPessoa, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calcular(): ResultadoTributacao;
     private calcularIcms;
     private calcularIpi;

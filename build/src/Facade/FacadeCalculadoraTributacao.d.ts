@@ -1,3 +1,4 @@
+import { IResultadoCalculoIcmsDesonerado } from '../Impostos/IResultadoCalculoIcmsDesonerado';
 import { TipoDesconto } from '../Flags/TipoDesconto';
 import { IIbpt } from '../Impostos/IIbpt';
 import { IResultadoCalculoCofins } from '../Impostos/IResultadoCalculoCofins';
@@ -11,10 +12,12 @@ import { IResultadoCalculoIcmsSt } from '../Impostos/IResultadoCalculoIcmsSt';
 import { IResultadoCalculoIpi } from '../Impostos/IResultadoCalculoIpi';
 import { IResultadoCalculoPis } from '../Impostos/IResultadoCalculoPis';
 import { ITributavel } from '../Impostos/ITributavel';
+import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
 export declare class FacadeCalculadoraTributacao {
     private tributavel;
     private tipoDesconto;
-    constructor(tributavel: ITributavel, tipoDesconto?: TipoDesconto);
+    private tipoCalculoIcmsDesonerado;
+    constructor(tributavel: ITributavel, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calculaIcms(): IResultadoCalculoIcms;
     calculaIpi(): IResultadoCalculoIpi;
     calculaIcmsCredito(): IResultadoCalculoCredito;
@@ -24,5 +27,6 @@ export declare class FacadeCalculadoraTributacao {
     calculaIcmsSt(): IResultadoCalculoIcmsSt;
     calculaIbpt(ibpt: IIbpt): IResultadoCalculoIbpt;
     calculaFcp(): IResultadoCalculoFcp;
+    calculaIcmsDesonerado(): IResultadoCalculoIcmsDesonerado;
     calculaFcpSt(): IResultadoCalculoFcpSt;
 }
