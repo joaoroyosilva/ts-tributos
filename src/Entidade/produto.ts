@@ -20,6 +20,7 @@ export class Produto implements ITributavelProduto {
   public desconto: number = 0;
   public valorIpi: number = 0;
   public percentualReducao: number = 0;
+  public percentualReducaoIcmsEfetivo: number = 0;
   public quantidadeProduto: number = 0;
 
   public percentualIcms: number = 0;

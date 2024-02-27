@@ -18,6 +18,7 @@ export interface ITributavel {
     desconto: number;
     valorIpi: number;
     percentualReducao: number;
+    percentualReducaoIcmsEfetivo: number;
     quantidadeProduto: number;
     percentualIcms: number;
     percentualIcmsEfetivo: number;

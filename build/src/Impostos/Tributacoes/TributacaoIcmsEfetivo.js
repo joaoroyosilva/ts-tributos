@@ -1,16 +1,16 @@
-import { CalculaBaseCalculoIcms } from '../CalculosDeBc/CalculaBaseCalculoIcms';
+import { CalculaBaseCalculoIcmsEfetivo } from '../CalculosDeBc/CalculaBaseCalculoIcmsEfetivo';
 import { ResultadoCalculoIcmsEfetivo } from '../Implementacoes/ResultadoCalculoIcmsEfetivo';
 export class TributacaoIcmsEfetivo {
     constructor(tributavel, tipoDesconto) {
         this.tributavel = tributavel;
         this.tipoDesconto = tipoDesconto;
-        this.calculaBaseCalculoIcms = new CalculaBaseCalculoIcms(tributavel, tipoDesconto);
+        this.calculaBaseCalculoIcmsEfetivo = new CalculaBaseCalculoIcmsEfetivo(tributavel, tipoDesconto);
     }
     calcula() {
         return this.calculaIcms();
     }
     calculaIcms() {
-        const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
+        const baseCalculo = this.calculaBaseCalculoIcmsEfetivo.calculaBaseDeCalculo();
         const valorIcms = this.calculaValorIcms(baseCalculo);
         return new ResultadoCalculoIcmsEfetivo(baseCalculo, valorIcms);
     }

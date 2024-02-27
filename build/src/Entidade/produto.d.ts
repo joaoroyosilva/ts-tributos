@@ -19,6 +19,7 @@ export declare class Produto implements ITributavelProduto {
     desconto: number;
     valorIpi: number;
     percentualReducao: number;
+    percentualReducaoIcmsEfetivo: number;
     quantidadeProduto: number;
     percentualIcms: number;
     percentualIcmsEfetivo: number;

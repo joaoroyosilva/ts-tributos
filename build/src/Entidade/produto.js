@@ -10,6 +10,7 @@ export class Produto {
         this.desconto = 0;
         this.valorIpi = 0;
         this.percentualReducao = 0;
+        this.percentualReducaoIcmsEfetivo = 0;
         this.quantidadeProduto = 0;
         this.percentualIcms = 0;
         this.percentualIcmsEfetivo = 0;

@@ -4,7 +4,7 @@ import { ITributavel } from '../ITributavel';
 export declare class TributacaoIcmsEfetivo {
     tributavel: ITributavel;
     tipoDesconto: TipoDesconto;
-    private calculaBaseCalculoIcms;
+    private calculaBaseCalculoIcmsEfetivo;
     constructor(tributavel: ITributavel, tipoDesconto: TipoDesconto);
     calcula(): IResultadoCalculoIcmsEfetivo;
     private calculaIcms;

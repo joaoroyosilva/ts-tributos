@@ -1,17 +1,17 @@
 import { TipoDesconto } from '../../Flags/TipoDesconto';
-import { CalculaBaseCalculoIcms } from '../CalculosDeBc/CalculaBaseCalculoIcms';
+import { CalculaBaseCalculoIcmsEfetivo } from '../CalculosDeBc/CalculaBaseCalculoIcmsEfetivo';
 import { ResultadoCalculoIcmsEfetivo } from '../Implementacoes/ResultadoCalculoIcmsEfetivo';
 import { IResultadoCalculoIcmsEfetivo } from '../IResultadoCalculoIcmsEfetivo';
 import { ITributavel } from '../ITributavel';
 
 export class TributacaoIcmsEfetivo {
-  private calculaBaseCalculoIcms: CalculaBaseCalculoIcms;
+  private calculaBaseCalculoIcmsEfetivo: CalculaBaseCalculoIcmsEfetivo;
 
   constructor(
     public tributavel: ITributavel,
     public tipoDesconto: TipoDesconto
   ) {
-    this.calculaBaseCalculoIcms = new CalculaBaseCalculoIcms(
+    this.calculaBaseCalculoIcmsEfetivo = new CalculaBaseCalculoIcmsEfetivo(
       tributavel,
       tipoDesconto
     );
@@ -22,7 +22,8 @@ export class TributacaoIcmsEfetivo {
   }
 
   private calculaIcms(): IResultadoCalculoIcmsEfetivo {
-    const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
+    const baseCalculo =
+      this.calculaBaseCalculoIcmsEfetivo.calculaBaseDeCalculo();
 
     const valorIcms = this.calculaValorIcms(baseCalculo);
 
