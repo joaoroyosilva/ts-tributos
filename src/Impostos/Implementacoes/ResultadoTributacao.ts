@@ -222,9 +222,7 @@ export class ResultadoTributacao {
 
           this.valorBcIcmsEfetivo = (this.icms as Cst60).baseCalculoIcmsEfetivo;
 
-          this.percentualIcmsEfetivo = (
-            this.icms as Cst60
-          ).percentualIcmsEfetivo;
+          this.valorIcmsEfetivo = (this.icms as Cst60).valorIcmsEfetivo;
           break;
 
         case Cst.cst70:

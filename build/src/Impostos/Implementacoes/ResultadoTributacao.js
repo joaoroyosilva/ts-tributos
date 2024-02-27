@@ -129,7 +129,7 @@ export class ResultadoTributacao {
                     this.valorBcStRetido = this.icms.valorBcStRetido;
                     this.percentualIcmsEfetivo = this.icms.percentualIcmsEfetivo;
                     this.valorBcIcmsEfetivo = this.icms.baseCalculoIcmsEfetivo;
-                    this.percentualIcmsEfetivo = this.icms.percentualIcmsEfetivo;
+                    this.valorIcmsEfetivo = this.icms.valorIcmsEfetivo;
                     break;
                 case Cst.cst70:
                     this.icms = new Cst70();
