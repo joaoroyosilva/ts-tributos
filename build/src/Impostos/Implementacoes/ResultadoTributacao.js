@@ -242,7 +242,7 @@ export class ResultadoTributacao {
                     this.csosnBase.calcula(this.produto);
                     this.percentualIcmsEfetivo = this.csosnBase.percentualIcmsEfetivo;
                     this.valorBcIcmsEfetivo = this.csosnBase.baseCalculoIcmsEfetivo;
-                    this.percentualIcmsEfetivo = this.csosnBase.percentualIcmsEfetivo;
+                    this.valorIcmsEfetivo = this.csosnBase.valorIcmsEfetivo;
                     break;
                 case Csosn.csosn900:
                     this.csosnBase = new Csosn900();

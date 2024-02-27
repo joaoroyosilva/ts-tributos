@@ -215,10 +215,13 @@ export class ResultadoTributacao {
 
           this.percentualBcStRetido = (this.icms as Cst60).percentualBcStRetido;
           this.valorBcStRetido = (this.icms as Cst60).valorBcStRetido;
+
           this.percentualIcmsEfetivo = (
             this.icms as Cst60
           ).percentualIcmsEfetivo;
+
           this.valorBcIcmsEfetivo = (this.icms as Cst60).baseCalculoIcmsEfetivo;
+
           this.percentualIcmsEfetivo = (
             this.icms as Cst60
           ).percentualIcmsEfetivo;
@@ -373,12 +376,12 @@ export class ResultadoTributacao {
           this.percentualIcmsEfetivo = (
             this.csosnBase as Csosn500
           ).percentualIcmsEfetivo;
+
           this.valorBcIcmsEfetivo = (
             this.csosnBase as Csosn500
           ).baseCalculoIcmsEfetivo;
-          this.percentualIcmsEfetivo = (
-            this.csosnBase as Csosn500
-          ).percentualIcmsEfetivo;
+
+          this.valorIcmsEfetivo = (this.csosnBase as Csosn500).valorIcmsEfetivo;
           break;
 
         case Csosn.csosn900:
