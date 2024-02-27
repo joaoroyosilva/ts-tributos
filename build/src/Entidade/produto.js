@@ -12,6 +12,7 @@ export class Produto {
         this.percentualReducao = 0;
         this.quantidadeProduto = 0;
         this.percentualIcms = 0;
+        this.percentualIcmsEfetivo = 0;
         this.percentualCredito = 0;
         this.percentualDiferimento = 0;
         this.percentualDifalInterna = 0;

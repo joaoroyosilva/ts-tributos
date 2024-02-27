@@ -24,6 +24,8 @@ import { TributacaoIpi } from '../Impostos/Tributacoes/TributacaoIpi';
 import { TributacaoPis } from '../Impostos/Tributacoes/TributacaoPis';
 import { TributacaoIcmsDesonerado } from '../Impostos/Tributacoes/TributacaoIcmsDesonerado';
 import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
+import { TributacaoIcmsEfetivo } from '../Impostos/Tributacoes/TributacaoIcmsEfetivo';
+import { IResultadoCalculoIcmsEfetivo } from '../Impostos/IResultadoCalculoIcmsEfetivo';
 
 export class FacadeCalculadoraTributacao {
   constructor(
@@ -34,6 +36,13 @@ export class FacadeCalculadoraTributacao {
 
   public calculaIcms(): IResultadoCalculoIcms {
     return new TributacaoIcms(this.tributavel, this.tipoDesconto).calcula();
+  }
+
+  public calculaIcmsEfetivo(): IResultadoCalculoIcmsEfetivo {
+    return new TributacaoIcmsEfetivo(
+      this.tributavel,
+      this.tipoDesconto
+    ).calcula();
   }
 
   public calculaIpi(): IResultadoCalculoIpi {

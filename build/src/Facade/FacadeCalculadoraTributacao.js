@@ -11,6 +11,7 @@ import { TributacaoIpi } from '../Impostos/Tributacoes/TributacaoIpi';
 import { TributacaoPis } from '../Impostos/Tributacoes/TributacaoPis';
 import { TributacaoIcmsDesonerado } from '../Impostos/Tributacoes/TributacaoIcmsDesonerado';
 import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
+import { TributacaoIcmsEfetivo } from '../Impostos/Tributacoes/TributacaoIcmsEfetivo';
 export class FacadeCalculadoraTributacao {
     constructor(tributavel, tipoDesconto = TipoDesconto.incondicional, tipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro) {
         this.tributavel = tributavel;
@@ -19,6 +20,9 @@ export class FacadeCalculadoraTributacao {
     }
     calculaIcms() {
         return new TributacaoIcms(this.tributavel, this.tipoDesconto).calcula();
+    }
+    calculaIcmsEfetivo() {
+        return new TributacaoIcmsEfetivo(this.tributavel, this.tipoDesconto).calcula();
     }
     calculaIpi() {
         return new TributacaoIpi(this.tributavel, this.tipoDesconto).calcula();

@@ -22,6 +22,7 @@ export declare class ResultadoTributacao {
     private ibpt;
     percentualReducao: number;
     percentualIcms: number;
+    percentualIcmsEfetivo: number;
     percentualCredito: number;
     percentualReducaoSt: number;
     percentualMva: number;
@@ -33,6 +34,8 @@ export declare class ResultadoTributacao {
     valorIcmsOperacao: number;
     valorBcIcms: number;
     valorIcms: number;
+    valorBcIcmsEfetivo: number;
+    valorIcmsEfetivo: number;
     valorBcIcmsSt: number;
     valorIcmsSt: number;
     valorCredito: number;

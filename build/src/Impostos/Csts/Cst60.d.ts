@@ -8,6 +8,9 @@ export declare class Cst60 extends CstBase {
     valorCreditoOutorgadoOuPresumido: number;
     valorIcmsStRetido: number;
     percentualSt: number;
+    baseCalculoIcmsEfetivo: number;
+    percentualIcmsEfetivo: number;
+    valorIcmsEfetivo: number;
     constructor(origemMercadoria?: OrigemMercadoria, tipoDesconto?: TipoDesconto);
     calcula(tributavel: ITributavel): void;
 }

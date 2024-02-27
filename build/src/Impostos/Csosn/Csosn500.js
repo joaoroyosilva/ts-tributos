@@ -1,3 +1,4 @@
+import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTributacao';
 import { Csosn } from '../../Flags/Csosn';
 import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
@@ -10,6 +11,12 @@ export class Csosn500 extends CsosnBase {
     calcula(tributavel) {
         this.percentualSt =
             tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+        this.percentualIcmsEfetivo =
+            tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+        let facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(tributavel, this.tipoDesconto);
+        let icms = facadeCalculadoraTributacao.calculaIcmsEfetivo();
+        this.baseCalculoIcmsEfetivo = icms.baseCalculo;
+        this.valorIcmsEfetivo = icms.valor;
     }
 }
 //# sourceMappingURL=Csosn500.js.map

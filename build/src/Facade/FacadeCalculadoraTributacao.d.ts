@@ -13,12 +13,14 @@ import { IResultadoCalculoIpi } from '../Impostos/IResultadoCalculoIpi';
 import { IResultadoCalculoPis } from '../Impostos/IResultadoCalculoPis';
 import { ITributavel } from '../Impostos/ITributavel';
 import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
+import { IResultadoCalculoIcmsEfetivo } from '../Impostos/IResultadoCalculoIcmsEfetivo';
 export declare class FacadeCalculadoraTributacao {
     private tributavel;
     private tipoDesconto;
     private tipoCalculoIcmsDesonerado;
     constructor(tributavel: ITributavel, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calculaIcms(): IResultadoCalculoIcms;
+    calculaIcmsEfetivo(): IResultadoCalculoIcmsEfetivo;
     calculaIpi(): IResultadoCalculoIpi;
     calculaIcmsCredito(): IResultadoCalculoCredito;
     calculaCofins(): IResultadoCalculoCofins;

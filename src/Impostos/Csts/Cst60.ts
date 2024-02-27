@@ -11,8 +11,11 @@ export class Cst60 extends CstBase {
 
   public valorCreditoOutorgadoOuPresumido: number;
   public valorIcmsStRetido: number;
-
   public percentualSt: number;
+
+  public baseCalculoIcmsEfetivo: number;
+  public percentualIcmsEfetivo: number;
+  public valorIcmsEfetivo: number;
 
   constructor(
     origemMercadoria: OrigemMercadoria = OrigemMercadoria.nacional,
@@ -23,6 +26,9 @@ export class Cst60 extends CstBase {
   }
 
   public calcula(tributavel: ITributavel) {
+    this.percentualIcmsEfetivo =
+      tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+
     const facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(
       tributavel,
       this.tipoDesconto
@@ -39,5 +45,10 @@ export class Cst60 extends CstBase {
 
     this.percentualSt =
       tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+
+    this.baseCalculoIcmsEfetivo =
+      facadeCalculadoraTributacao.calculaIcmsEfetivo().baseCalculo;
+    this.valorIcmsEfetivo =
+      facadeCalculadoraTributacao.calculaIcmsEfetivo().valor;
   }
 }

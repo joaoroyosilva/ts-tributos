@@ -31,6 +31,7 @@ import { TributacaoIpi } from '../Tributacoes/TributacaoIpi';
 import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
 import { Cst40 } from '../Csts/Cst40';
+import { Csosn500 } from '../Csosn/Csosn500';
 export class ResultadoTributacao {
     constructor(produto, crtEmpresa, tipoOperacao, tipoPessoa, tipoDesconto = TipoDesconto.incondicional, tipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro) {
         this.produto = produto;
@@ -126,6 +127,9 @@ export class ResultadoTributacao {
                     this.icms.calcula(this.produto);
                     this.percentualBcStRetido = this.icms.percentualBcStRetido;
                     this.valorBcStRetido = this.icms.valorBcStRetido;
+                    this.percentualIcmsEfetivo = this.icms.percentualIcmsEfetivo;
+                    this.valorBcIcmsEfetivo = this.icms.baseCalculoIcmsEfetivo;
+                    this.percentualIcmsEfetivo = this.icms.percentualIcmsEfetivo;
                     break;
                 case Cst.cst70:
                     this.icms = new Cst70();
@@ -234,7 +238,11 @@ export class ResultadoTributacao {
                     //Não tem cálculo
                     break;
                 case Csosn.csosn500:
-                    //Não tem cálculo
+                    this.csosnBase = new Csosn500();
+                    this.csosnBase.calcula(this.produto);
+                    this.percentualIcmsEfetivo = this.csosnBase.percentualIcmsEfetivo;
+                    this.valorBcIcmsEfetivo = this.csosnBase.baseCalculoIcmsEfetivo;
+                    this.percentualIcmsEfetivo = this.csosnBase.percentualIcmsEfetivo;
                     break;
                 case Csosn.csosn900:
                     this.csosnBase = new Csosn900();

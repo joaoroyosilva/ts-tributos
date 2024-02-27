@@ -20,6 +20,7 @@ export interface ITributavel {
     percentualReducao: number;
     quantidadeProduto: number;
     percentualIcms: number;
+    percentualIcmsEfetivo: number;
     percentualCredito: number;
     percentualDiferimento: number;
     percentualDifalInterna: number;

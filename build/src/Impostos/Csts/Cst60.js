@@ -9,6 +9,8 @@ export class Cst60 extends CstBase {
         this.cst = Cst.cst60;
     }
     calcula(tributavel) {
+        this.percentualIcmsEfetivo =
+            tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
         const facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(tributavel, this.tipoDesconto);
         const resultadoCalculoIcms = facadeCalculadoraTributacao.calculaIcmsSt();
         this.percentualBcStRetido = tributavel.percentualReducaoSt;
@@ -18,6 +20,10 @@ export class Cst60 extends CstBase {
             facadeCalculadoraTributacao.calculaIcmsCredito().valor;
         this.percentualSt =
             tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+        this.baseCalculoIcmsEfetivo =
+            facadeCalculadoraTributacao.calculaIcmsEfetivo().baseCalculo;
+        this.valorIcmsEfetivo =
+            facadeCalculadoraTributacao.calculaIcmsEfetivo().valor;
     }
 }
 //# sourceMappingURL=Cst60.js.map

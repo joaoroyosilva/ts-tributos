@@ -34,6 +34,7 @@ import { TributacaoIpi } from '../Tributacoes/TributacaoIpi';
 import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
 import { Cst40 } from '../Csts/Cst40';
+import { Csosn500 } from '../Csosn/Csosn500';
 
 export class ResultadoTributacao {
   // impostos privados
@@ -50,6 +51,7 @@ export class ResultadoTributacao {
   //retorno/calculo public
   public percentualReducao: number;
   public percentualIcms: number;
+  public percentualIcmsEfetivo: number;
   public percentualCredito: number;
   public percentualReducaoSt: number;
   public percentualMva: number;
@@ -62,6 +64,8 @@ export class ResultadoTributacao {
   public valorIcmsOperacao: number;
   public valorBcIcms: number;
   public valorIcms: number;
+  public valorBcIcmsEfetivo: number;
+  public valorIcmsEfetivo: number;
   public valorBcIcmsSt: number;
   public valorIcmsSt: number;
   public valorCredito: number;
@@ -211,6 +215,13 @@ export class ResultadoTributacao {
 
           this.percentualBcStRetido = (this.icms as Cst60).percentualBcStRetido;
           this.valorBcStRetido = (this.icms as Cst60).valorBcStRetido;
+          this.percentualIcmsEfetivo = (
+            this.icms as Cst60
+          ).percentualIcmsEfetivo;
+          this.valorBcIcmsEfetivo = (this.icms as Cst60).baseCalculoIcmsEfetivo;
+          this.percentualIcmsEfetivo = (
+            this.icms as Cst60
+          ).percentualIcmsEfetivo;
           break;
 
         case Cst.cst70:
@@ -356,7 +367,18 @@ export class ResultadoTributacao {
           break;
 
         case Csosn.csosn500:
-          //Não tem cálculo
+          this.csosnBase = new Csosn500();
+          this.csosnBase.calcula(this.produto);
+
+          this.percentualIcmsEfetivo = (
+            this.csosnBase as Csosn500
+          ).percentualIcmsEfetivo;
+          this.valorBcIcmsEfetivo = (
+            this.csosnBase as Csosn500
+          ).baseCalculoIcmsEfetivo;
+          this.percentualIcmsEfetivo = (
+            this.csosnBase as Csosn500
+          ).percentualIcmsEfetivo;
           break;
 
         case Csosn.csosn900:
