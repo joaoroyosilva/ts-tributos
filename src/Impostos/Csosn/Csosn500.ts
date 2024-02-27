@@ -25,8 +25,7 @@ export class Csosn500 extends CsosnBase {
     this.percentualSt =
       tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
 
-    this.percentualIcmsEfetivo =
-      tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+    this.percentualIcmsEfetivo = tributavel.percentualIcmsEfetivo;
 
     let facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(
       tributavel,

@@ -9,8 +9,7 @@ export class Cst60 extends CstBase {
         this.cst = Cst.cst60;
     }
     calcula(tributavel) {
-        this.percentualIcmsEfetivo =
-            tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+        this.percentualIcmsEfetivo = tributavel.percentualIcmsEfetivo;
         const facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(tributavel, this.tipoDesconto);
         const resultadoCalculoIcms = facadeCalculadoraTributacao.calculaIcmsSt();
         this.percentualBcStRetido = tributavel.percentualReducaoSt;

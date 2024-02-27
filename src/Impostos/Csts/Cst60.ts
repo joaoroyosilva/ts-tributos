@@ -26,8 +26,7 @@ export class Cst60 extends CstBase {
   }
 
   public calcula(tributavel: ITributavel) {
-    this.percentualIcmsEfetivo =
-      tributavel.percentualIcmsSt + tributavel.percentualFcpSt;
+    this.percentualIcmsEfetivo = tributavel.percentualIcmsEfetivo;
 
     const facadeCalculadoraTributacao = new FacadeCalculadoraTributacao(
       tributavel,
