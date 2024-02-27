@@ -33,8 +33,7 @@ export class TributacaoIcmsDesonerado {
                     (1 - aliquota) -
                     valorBase);
             }
-            else if (this.tributavel.cst == Cst.cst30 ||
-                this.tributavel.cst == Cst.cst40) {
+            else {
                 return (valorBase / (1 - aliquota)) * aliquota;
             }
         }
