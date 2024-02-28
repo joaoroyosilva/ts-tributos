@@ -3,7 +3,7 @@ import { Cst } from '../../src/Flags/Cst';
 import { Cst20 } from '../../src/Impostos/Csts/Cst20';
 
 describe('Testa Cst20', () => {
-  test('calcula icms', () => {
+  test('calcula icms desonerado', () => {
     let produto = new Produto();
     produto.quantidadeProduto = 1;
     produto.valorProduto = 1000;
