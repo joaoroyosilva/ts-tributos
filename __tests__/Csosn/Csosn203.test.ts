@@ -12,6 +12,7 @@ describe('Testa Csosn203', () => {
     produto.percentualIcmsSt = 18;
     produto.percentualIpi = 15;
     produto.percentualMva = 40;
+    produto.icmsSobreIpi = true;
 
     const utils = new Utils();
     const csosn203 = new Csosn203();
@@ -27,6 +28,7 @@ describe('Testa Csosn203', () => {
     let produto = new Produto();
     produto.quantidadeProduto = 1;
     produto.valorProduto = 1900;
+    produto.icmsSobreIpi = true;
     produto.percentualIcms = 18;
     produto.percentualIcmsSt = 18;
     produto.percentualIpi = 15;

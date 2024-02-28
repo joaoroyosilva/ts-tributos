@@ -11,6 +11,7 @@ describe('Testa Csosn202', () => {
     produto.percentualIcms = 18;
     produto.percentualIcmsSt = 18;
     produto.percentualIpi = 15;
+    produto.icmsSobreIpi = true;
     produto.percentualMva = 40;
 
     const utils = new Utils();
@@ -31,6 +32,7 @@ describe('Testa Csosn202', () => {
     produto.percentualIcmsSt = 18;
     produto.percentualIpi = 15;
     produto.percentualMva = 40;
+    produto.icmsSobreIpi = true;
     produto.percentualCredito = 5;
     produto.desconto = 100;
 

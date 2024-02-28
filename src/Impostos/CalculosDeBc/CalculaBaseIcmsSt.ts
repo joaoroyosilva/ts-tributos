@@ -11,7 +11,9 @@ export class CalculaBaseIcmsSt extends CalculaBaseCalculoBase {
   }
 
   public calculaBaseDeCalculo(): number {
-    let baseCalculo = super.calculaBaseDeCalculo() + this.tributavel.valorIpi;
+    let baseCalculo = this.tributavel.icmsSobreIpi
+      ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
+      : super.calculaBaseDeCalculo();
 
     baseCalculo =
       baseCalculo - (baseCalculo * this.tributavel.percentualReducao) / 100;
