@@ -45,6 +45,6 @@ export class TributacaoIcmsSt {
   }
 
   private calculaIcms(baseCalculo: number): number {
-    return (baseCalculo * this.tributavel.percentualIcms) / 100;
+    return (baseCalculo * this.tributavel.percentualIcmsSt) / 100;
   }
 }
