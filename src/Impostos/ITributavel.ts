@@ -12,12 +12,14 @@ export interface ITributavel {
   cstIpi: CstIpi;
   isServico: boolean;
   icmsSobreIpi: boolean;
+  deduzIcmsPisCofins: boolean;
   valorProduto: number;
   frete: number;
   seguro: number;
   outrasDespesas: number;
   desconto: number;
   valorIpi: number;
+  valorIcms: number;
   percentualReducao: number;
   percentualReducaoIcmsEfetivo: number;
   quantidadeProduto: number;

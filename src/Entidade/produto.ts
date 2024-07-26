@@ -13,12 +13,14 @@ export class Produto implements ITributavelProduto {
   public cstIpi: CstIpi;
   public isServico: boolean;
   public icmsSobreIpi: boolean = false;
+  public deduzIcmsPisCofins: boolean = false;
   public valorProduto: number = 0;
   public frete: number = 0;
   public seguro: number = 0;
   public outrasDespesas: number = 0;
   public desconto: number = 0;
   public valorIpi: number = 0;
+  public valorIcms: number = 0;
   public percentualReducao: number = 0;
   public percentualReducaoIcmsEfetivo: number = 0;
   public quantidadeProduto: number = 0;

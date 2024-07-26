@@ -11,7 +11,9 @@ export class CalculaBaseCalculoCofins extends CalculaBaseCalculoBase {
   }
 
   public calculaBaseDeCalculo(): number {
-    const baseCalculo = this.tributavel.icmsSobreIpi
+    const baseCalculo = this.tributavel.deduzIcmsPisCofins
+    ? super.calculaBaseDeCalculo() - this.tributavel.valorIcms
+    : this.tributavel.icmsSobreIpi
       ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
       : super.calculaBaseDeCalculo();
 
