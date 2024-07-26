@@ -282,6 +282,7 @@ export class ResultadoTributacao {
         this.pis = new TributacaoPis(this.produto, this.tipoDesconto);
         this.valorBcPis = 0;
         this.valorPis = 0;
+        this.produto.valorIcms = this.valorIcms;
         if (this.produto.cstPisCofins == CstPisCofins.cst01 ||
             this.produto.cstPisCofins == CstPisCofins.cst02) {
             const result = this.pis.calcula();
@@ -293,6 +294,7 @@ export class ResultadoTributacao {
         this.cofins = new TributacaoCofins(this.produto, this.tipoDesconto);
         this.valorBcCofins = 0;
         this.valorCofins = 0;
+        this.produto.valorIcms = this.valorIcms;
         if (this.produto.cstPisCofins == CstPisCofins.cst01 ||
             this.produto.cstPisCofins == CstPisCofins.cst02) {
             const result = this.cofins.calcula();

@@ -3,12 +3,14 @@ export class Produto {
     constructor() {
         this.documento = Documento.NFe;
         this.icmsSobreIpi = false;
+        this.deduzIcmsPisCofins = false;
         this.valorProduto = 0;
         this.frete = 0;
         this.seguro = 0;
         this.outrasDespesas = 0;
         this.desconto = 0;
         this.valorIpi = 0;
+        this.valorIcms = 0;
         this.percentualReducao = 0;
         this.percentualReducaoIcmsEfetivo = 0;
         this.quantidadeProduto = 0;

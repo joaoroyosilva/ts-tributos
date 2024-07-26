@@ -7,9 +7,11 @@ export class CalculaBaseIcmsSt extends CalculaBaseCalculoBase {
         this.tipoDesconto = tipoDesconto;
     }
     calculaBaseDeCalculo() {
-        let baseCalculo = super.calculaBaseDeCalculo() + this.tributavel.valorIpi;
+        let baseCalculo = this.tributavel.icmsSobreIpi
+            ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
+            : super.calculaBaseDeCalculo();
         baseCalculo =
-            baseCalculo - (baseCalculo * this.tributavel.percentualReducao) / 100;
+            baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
         const baseCalculoSt = this.calculaBaseDeCalculoSt(baseCalculo);
         return baseCalculoSt;
     }

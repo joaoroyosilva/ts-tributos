@@ -50,4 +50,22 @@ describe('Testa CalculaPis', () => {
     expect(utils.round(resultadoCalculoPis.baseCalculo)).toBe(1000);
     expect(utils.round(resultadoCalculoPis.valor)).toBe(16.5);
   });
+
+  test('testa calcula cofins com deducao de icms', () => {
+    let produto = new Produto();
+    produto.percentualPis = 1.65;
+    produto.valorProduto = 1000;
+    produto.deduzIcmsPisCofins = true;
+    produto.percentualIcms = 12;
+    produto.valorIcms = 120;
+    produto.quantidadeProduto = 1;
+
+    const utils = new Utils();
+
+    const facade = new FacadeCalculadoraTributacao(produto);
+
+    const resultadoCalculoPis = facade.calculaPis();
+    expect(utils.round(resultadoCalculoPis.baseCalculo)).toBe(880);
+    expect(utils.round(resultadoCalculoPis.valor)).toBe(14.52);
+  });
 });
