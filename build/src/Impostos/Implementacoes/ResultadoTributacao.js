@@ -43,7 +43,7 @@ export class ResultadoTributacao {
     }
     calcular() {
         if (this.produto.isServico) {
-            const calcularRetencao = this.crtEmpresa != Crt.simplesNacional &&
+            const calcularRetencao = (this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso) &&
                 this.tipoPessoa != TipoPessoa.fisica;
             this.calcularIssqn(calcularRetencao);
         }
@@ -59,7 +59,7 @@ export class ResultadoTributacao {
         return this;
     }
     calcularIcms() {
-        if (this.crtEmpresa !== Crt.simplesNacional) {
+        if ((this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso)) {
             switch (this.produto.cst) {
                 case Cst.cst00:
                     this.icms = new Cst00();
