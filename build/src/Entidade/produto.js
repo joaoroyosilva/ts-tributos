@@ -38,6 +38,15 @@ export class Produto {
         this.percentualFederalImportados = 0;
         this.percentualEstadual = 0;
         this.percentualMunicipal = 0;
+        this.percentualCbs = 0;
+        this.reducaoCbs = 0;
+        this.percentualDiferimentoCbs = 0;
+        this.percentualIbsUf = 0;
+        this.reducaoIbsUf = 0;
+        this.percentualDiferimentoIbsUf = 0;
+        this.percentualIbsMun = 0;
+        this.reducaoIbsMun = 0;
+        this.percentualDiferimentoIbsMun = 0;
     }
 }
 //# sourceMappingURL=produto.js.map

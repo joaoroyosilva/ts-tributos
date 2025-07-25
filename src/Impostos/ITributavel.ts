@@ -45,4 +45,13 @@ export interface ITributavel {
   percentualRetIrrf: number;
   percentualRetInss: number;
   percentualFcpSt: number;
+  percentualCbs: number;
+  reducaoCbs: number;
+  percentualDiferimentoCbs: number;
+  percentualIbsUf: number;
+  reducaoIbsUf: number;
+  percentualDiferimentoIbsUf: number;
+  percentualIbsMun: number;
+  reducaoIbsMun: number;
+  percentualDiferimentoIbsMun: number;
 }

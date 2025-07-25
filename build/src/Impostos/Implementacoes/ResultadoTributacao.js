@@ -32,6 +32,9 @@ import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
 import { Cst40 } from '../Csts/Cst40';
 import { Csosn500 } from '../Csosn/Csosn500';
+import { TributacaoCbs } from '../Tributacoes/TributacaoCbs';
+import { TributacaoIbsUf } from '../Tributacoes/TributacaoIbsUf';
+import { TributacaoIbsMun } from '../Tributacoes/TributacaoIbsMun';
 export class ResultadoTributacao {
     constructor(produto, crtEmpresa, tipoOperacao, tipoPessoa, tipoDesconto = TipoDesconto.incondicional, tipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro) {
         this.produto = produto;
@@ -40,6 +43,21 @@ export class ResultadoTributacao {
         this.tipoPessoa = tipoPessoa;
         this.tipoDesconto = tipoDesconto;
         this.tipoCalculoIcmsDesonerado = tipoCalculoIcmsDesonerado;
+        this.baseCalculoCbs = 0;
+        this.valorCbs = 0;
+        this.valorDiferidoCbs = 0;
+        this.percentualEfetivoCbs = 0;
+        this.valorEfetivoCbs = 0;
+        this.baseCalculoIbsUF = 0;
+        this.valorIbsUF = 0;
+        this.valorDiferidoIbsUF = 0;
+        this.percentualEfetivoIbsUF = 0;
+        this.valorEfetivoIbsUF = 0;
+        this.baseCalculoIbsMun = 0;
+        this.valorIbsMun = 0;
+        this.valorDiferidoIbsMun = 0;
+        this.percentualEfetivoIbsMun = 0;
+        this.valorEfetivoIbsMun = 0;
     }
     calcular() {
         if (this.produto.isServico) {
@@ -56,6 +74,10 @@ export class ResultadoTributacao {
         this.calcularPis();
         this.calcularCofins();
         this.calculaIbpt();
+        //RTC
+        this.calcularCbs();
+        this.calcularIbsUf();
+        this.calcularIbsMun();
         return this;
     }
     calcularIcms() {
@@ -348,6 +370,33 @@ export class ResultadoTributacao {
         this.valorTributacaoFederalImportados = result.tributacaoFederalImportados;
         this.valorTributacaoMunicipal = result.tributacaoMunicipal;
         this.valorTotalTributos = result.valorTotalTributos;
+    }
+    calcularCbs() {
+        this.cbs = new TributacaoCbs(this.produto, this);
+        let resultado = this.cbs.calcula();
+        this.baseCalculoCbs = resultado.baseCalculo;
+        this.valorCbs = resultado.valor;
+        this.valorDiferidoCbs = resultado.valorDiferido;
+        this.percentualEfetivoCbs = resultado.percentualEfetivo;
+        this.valorEfetivoCbs = resultado.valorEfetivo;
+    }
+    calcularIbsUf() {
+        this.ibsUf = new TributacaoIbsUf(this.produto, this);
+        let resultado = this.ibsUf.calcula();
+        this.baseCalculoIbsUF = resultado.baseCalculo;
+        this.valorIbsUF = resultado.valor;
+        this.valorDiferidoIbsUF = resultado.valorDiferido;
+        this.percentualEfetivoIbsUF = resultado.percentualEfetivo;
+        this.valorEfetivoIbsUF = resultado.valorEfetivo;
+    }
+    calcularIbsMun() {
+        this.ibsMun = new TributacaoIbsMun(this.produto, this);
+        let resultado = this.ibsMun.calcula();
+        this.baseCalculoIbsMun = resultado.baseCalculo;
+        this.valorIbsMun = resultado.valor;
+        this.valorDiferidoIbsMun = resultado.valorDiferido;
+        this.percentualEfetivoIbsMun = resultado.percentualEfetivo;
+        this.valorEfetivoIbsMun = resultado.valorEfetivo;
     }
     cstGeraDifal(cst) {
         return cst == 0 || cst == 20 || cst == 40 || cst == 41 || cst == 60;

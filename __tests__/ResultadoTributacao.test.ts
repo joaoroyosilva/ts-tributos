@@ -30,6 +30,9 @@ describe('Testa resultado tributacao', () => {
     produto.percentualDifalInterestadual = 12;
     produto.percentualDifalInterna = 18;
 
+    produto.percentualCbs = 0.9;
+    produto.percentualIbsUf = 0.1;
+
     return produto;
   }
 
@@ -48,5 +51,8 @@ describe('Testa resultado tributacao', () => {
     const result = tributacao.calcular();
     expect(utils.round(result.fcp)).toBe(2.07);
     expect(utils.round(result.valorIcms)).toBe(37.26);
+
+    expect(result.valorCbs).toBe(1.51);
+    expect(result.valorIbsUF).toBe(0.17);
   });
 });

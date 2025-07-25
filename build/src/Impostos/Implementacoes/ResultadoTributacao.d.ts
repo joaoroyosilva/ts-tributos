@@ -20,6 +20,9 @@ export declare class ResultadoTributacao {
     private tributacaoFcp;
     private issqn;
     private ibpt;
+    private cbs;
+    private ibsUf;
+    private ibsMun;
     percentualReducao: number;
     percentualIcms: number;
     percentualIcmsEfetivo: number;
@@ -68,6 +71,21 @@ export declare class ResultadoTributacao {
     valorTributacaoEstadual: number;
     valorTributacaoMunicipal: number;
     valorTotalTributos: number;
+    baseCalculoCbs: number;
+    valorCbs: number;
+    valorDiferidoCbs: number;
+    percentualEfetivoCbs: number;
+    valorEfetivoCbs: number;
+    baseCalculoIbsUF: number;
+    valorIbsUF: number;
+    valorDiferidoIbsUF: number;
+    percentualEfetivoIbsUF: number;
+    valorEfetivoIbsUF: number;
+    baseCalculoIbsMun: number;
+    valorIbsMun: number;
+    valorDiferidoIbsMun: number;
+    percentualEfetivoIbsMun: number;
+    valorEfetivoIbsMun: number;
     constructor(produto: ITributavelProduto, crtEmpresa: Crt, tipoOperacao: TipoOperacao, tipoPessoa: TipoPessoa, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calcular(): ResultadoTributacao;
     private calcularIcms;
@@ -78,6 +96,9 @@ export declare class ResultadoTributacao {
     private calcularFcp;
     private calcularDifal;
     private calculaIbpt;
+    private calcularCbs;
+    private calcularIbsUf;
+    private calcularIbsMun;
     private cstGeraDifal;
     private csosnGeraDifal;
 }

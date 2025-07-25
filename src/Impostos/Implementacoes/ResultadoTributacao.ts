@@ -35,6 +35,9 @@ import { TributacaoIssqn } from '../Tributacoes/TributacaoIssqn';
 import { TributacaoPis } from '../Tributacoes/TributacaoPis';
 import { Cst40 } from '../Csts/Cst40';
 import { Csosn500 } from '../Csosn/Csosn500';
+import { TributacaoCbs } from '../Tributacoes/TributacaoCbs';
+import { TributacaoIbsUf } from '../Tributacoes/TributacaoIbsUf';
+import { TributacaoIbsMun } from '../Tributacoes/TributacaoIbsMun';
 
 export class ResultadoTributacao {
   // impostos privados
@@ -47,6 +50,9 @@ export class ResultadoTributacao {
   private tributacaoFcp: TributacaoFcp;
   private issqn: TributacaoIssqn;
   private ibpt: TributacaoIbpt;
+  private cbs: TributacaoCbs;
+  private ibsUf: TributacaoIbsUf;
+  private ibsMun: TributacaoIbsMun;
 
   //retorno/calculo public
   public percentualReducao: number;
@@ -102,6 +108,24 @@ export class ResultadoTributacao {
   public valorTributacaoMunicipal: number;
   public valorTotalTributos: number;
 
+  public baseCalculoCbs: number = 0;
+  public valorCbs: number = 0;
+  public valorDiferidoCbs: number = 0;
+  public percentualEfetivoCbs: number = 0;
+  public valorEfetivoCbs: number = 0;
+
+  public baseCalculoIbsUF: number = 0;
+  public valorIbsUF: number = 0;
+  public valorDiferidoIbsUF: number = 0;
+  public percentualEfetivoIbsUF: number = 0;
+  public valorEfetivoIbsUF: number = 0;
+
+  public baseCalculoIbsMun: number = 0;
+  public valorIbsMun: number = 0;
+  public valorDiferidoIbsMun: number = 0;
+  public percentualEfetivoIbsMun: number = 0;
+  public valorEfetivoIbsMun: number = 0;
+
   constructor(
     private produto: ITributavelProduto,
     private crtEmpresa: Crt,
@@ -109,7 +133,7 @@ export class ResultadoTributacao {
     private tipoPessoa: TipoPessoa,
     private tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
     private tipoCalculoIcmsDesonerado: TipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
-  ) {}
+  ) { }
 
   public calcular(): ResultadoTributacao {
     if (this.produto.isServico) {
@@ -127,6 +151,11 @@ export class ResultadoTributacao {
     this.calcularPis();
     this.calcularCofins();
     this.calculaIbpt();
+
+    //RTC
+    this.calcularCbs();
+    this.calcularIbsUf();
+    this.calcularIbsMun();
 
     return this;
   }
@@ -516,6 +545,42 @@ export class ResultadoTributacao {
     this.valorTributacaoFederalImportados = result.tributacaoFederalImportados;
     this.valorTributacaoMunicipal = result.tributacaoMunicipal;
     this.valorTotalTributos = result.valorTotalTributos;
+  }
+
+  private calcularCbs(): void {
+    this.cbs = new TributacaoCbs(this.produto, this);
+
+    let resultado = this.cbs.calcula();
+
+    this.baseCalculoCbs = resultado.baseCalculo;
+    this.valorCbs = resultado.valor;
+    this.valorDiferidoCbs = resultado.valorDiferido;
+    this.percentualEfetivoCbs = resultado.percentualEfetivo;
+    this.valorEfetivoCbs = resultado.valorEfetivo;
+  }
+
+  private calcularIbsUf(): void {
+    this.ibsUf = new TributacaoIbsUf(this.produto, this);
+
+    let resultado = this.ibsUf.calcula();
+
+    this.baseCalculoIbsUF = resultado.baseCalculo;
+    this.valorIbsUF = resultado.valor;
+    this.valorDiferidoIbsUF = resultado.valorDiferido;
+    this.percentualEfetivoIbsUF = resultado.percentualEfetivo;
+    this.valorEfetivoIbsUF = resultado.valorEfetivo;
+  }
+
+  private calcularIbsMun(): void {
+    this.ibsMun = new TributacaoIbsMun(this.produto, this);
+
+    let resultado = this.ibsMun.calcula();
+
+    this.baseCalculoIbsMun = resultado.baseCalculo;
+    this.valorIbsMun = resultado.valor;
+    this.valorDiferidoIbsMun = resultado.valorDiferido;
+    this.percentualEfetivoIbsMun = resultado.percentualEfetivo;
+    this.valorEfetivoIbsMun = resultado.valorEfetivo;
   }
 
   private cstGeraDifal(cst: number): boolean {
