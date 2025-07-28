@@ -1,8 +1,8 @@
-import { Utils } from "../../utils/Utils";
-import { CalculaBaseCalculoCbsIbs } from "../CalculosDeBc/CalculaBaseCalculoCbsIbs";
-import { ResultadoCalculoCbsIbs } from "../Implementacoes/ResultadoCalculoCbsIbs";
-import { ResultadoTributacao } from "../Implementacoes/ResultadoTributacao";
-import { ITributavel } from "../ITributavel";
+import { Utils } from '../../utils/Utils';
+import { CalculaBaseCalculoCbsIbs } from '../CalculosDeBc/CalculaBaseCalculoCbsIbs';
+import { ResultadoCalculoCbsIbs } from '../Implementacoes/ResultadoCalculoCbsIbs';
+import { ResultadoTributacao } from '../Implementacoes/ResultadoTributacao';
+import { ITributavel } from '../ITributavel';
 
 export class TributacaoIbsUf {
   calculaBaseCalculo: CalculaBaseCalculoCbsIbs;
@@ -11,7 +11,10 @@ export class TributacaoIbsUf {
     private tributavel: ITributavel,
     private resultadoTributacao: ResultadoTributacao
   ) {
-    this.calculaBaseCalculo = new CalculaBaseCalculoCbsIbs(this.tributavel, this.resultadoTributacao);
+    this.calculaBaseCalculo = new CalculaBaseCalculoCbsIbs(
+      this.tributavel,
+      this.resultadoTributacao
+    );
   }
 
   public calcula(): ResultadoCalculoCbsIbs {
@@ -23,7 +26,10 @@ export class TributacaoIbsUf {
     const valor = this.calculaValorIbsUf(baseCalculo);
     const valorDiferido = this.calculaValorDiferido(baseCalculo);
     const percentualEfetivo = this.calculaAliquotaEfetiva();
-    const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo);
+    const valorEfetivo = this.calculaValorEfetivo(
+      baseCalculo,
+      percentualEfetivo
+    );
 
     return new ResultadoCalculoCbsIbs(
       baseCalculo,
@@ -36,12 +42,14 @@ export class TributacaoIbsUf {
 
   private calculaValorIbsUf(baseCalculo: number): number {
     return new Utils().round(
-      (baseCalculo * this.tributavel.percentualIbsUf) / 100);
+      (baseCalculo * this.tributavel.percentualIbsUf) / 100
+    );
   }
 
   private calculaValorDiferido(baseCalculo: number): number {
     return new Utils().round(
-      (baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100);
+      (baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100
+    );
   }
 
   private calculaAliquotaEfetiva(): number {
@@ -50,10 +58,14 @@ export class TributacaoIbsUf {
     }
 
     return new Utils().round(
-      this.tributavel.percentualIbsUf / (1 - this.tributavel.reducaoIbsUf / 100));
+      this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100)
+    );
   }
 
-  private calculaValorEfetivo(baseCalculo: number, percentualEfetivo: number): number {
+  private calculaValorEfetivo(
+    baseCalculo: number,
+    percentualEfetivo: number
+  ): number {
     return new Utils().round((baseCalculo * percentualEfetivo) / 100);
   }
 }

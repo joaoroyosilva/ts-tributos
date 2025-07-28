@@ -43,6 +43,55 @@ export class ResultadoTributacao {
         this.tipoPessoa = tipoPessoa;
         this.tipoDesconto = tipoDesconto;
         this.tipoCalculoIcmsDesonerado = tipoCalculoIcmsDesonerado;
+        //retorno/calculo public
+        this.percentualReducao = 0;
+        this.percentualIcms = 0;
+        this.percentualIcmsEfetivo = 0;
+        this.percentualCredito = 0;
+        this.percentualReducaoSt = 0;
+        this.percentualMva = 0;
+        this.percentualIcmsSt = 0;
+        this.percentualReducaoIcmsBc = 0;
+        this.percentualBcStRetido = 0;
+        this.percentualDiferimento = 0;
+        this.valorIcmsDiferido = 0;
+        this.valorIcmsOperacao = 0;
+        this.valorBcIcms = 0;
+        this.valorIcms = 0;
+        this.valorBcIcmsEfetivo = 0;
+        this.valorIcmsEfetivo = 0;
+        this.valorBcIcmsSt = 0;
+        this.valorIcmsSt = 0;
+        this.valorCredito = 0;
+        this.valorBcStRetido = 0;
+        this.valorIcmsDesonerado = 0;
+        this.valorBcCofins = 0;
+        this.valorCofins = 0;
+        this.valorBcPis = 0;
+        this.valorPis = 0;
+        this.valorBcIpi = 0;
+        this.valorIpi = 0;
+        this.valorBcDifal = 0;
+        this.valorBcFcp = 0;
+        this.fcp = 0;
+        this.valorDifal = 0;
+        this.valorIcmsOrigem = 0;
+        this.valorIcmsDestino = 0;
+        this.valorIss = 0;
+        this.baseCalculoIss = 0;
+        this.percentualIss = 0;
+        this.baseCalculoInss = 0;
+        this.baseCalculoIrrf = 0;
+        this.valorRetCofins = 0;
+        this.valorRetPis = 0;
+        this.valorRetIrrf = 0;
+        this.valorRetInss = 0;
+        this.valorRetCsll = 0;
+        this.valorTributacaoFederal = 0;
+        this.valorTributacaoFederalImportados = 0;
+        this.valorTributacaoEstadual = 0;
+        this.valorTributacaoMunicipal = 0;
+        this.valorTotalTributos = 0;
         this.baseCalculoCbs = 0;
         this.valorCbs = 0;
         this.valorDiferidoCbs = 0;
@@ -61,7 +110,8 @@ export class ResultadoTributacao {
     }
     calcular() {
         if (this.produto.isServico) {
-            const calcularRetencao = (this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso) &&
+            const calcularRetencao = (this.crtEmpresa == Crt.regimeNormal ||
+                this.crtEmpresa == Crt.simplesNacionalExcesso) &&
                 this.tipoPessoa != TipoPessoa.fisica;
             this.calcularIssqn(calcularRetencao);
         }
@@ -81,7 +131,8 @@ export class ResultadoTributacao {
         return this;
     }
     calcularIcms() {
-        if ((this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso)) {
+        if (this.crtEmpresa == Crt.regimeNormal ||
+            this.crtEmpresa == Crt.simplesNacionalExcesso) {
             switch (this.produto.cst) {
                 case Cst.cst00:
                     this.icms = new Cst00();
