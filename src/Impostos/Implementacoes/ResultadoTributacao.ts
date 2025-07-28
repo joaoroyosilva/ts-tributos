@@ -55,58 +55,58 @@ export class ResultadoTributacao {
   private ibsMun: TributacaoIbsMun;
 
   //retorno/calculo public
-  public percentualReducao: number;
-  public percentualIcms: number;
-  public percentualIcmsEfetivo: number;
-  public percentualCredito: number;
-  public percentualReducaoSt: number;
-  public percentualMva: number;
-  public percentualIcmsSt: number;
-  public percentualReducaoIcmsBc: number;
-  public percentualBcStRetido: number;
-  public percentualDiferimento: number;
+  public percentualReducao: number = 0;
+  public percentualIcms: number = 0;
+  public percentualIcmsEfetivo: number = 0;
+  public percentualCredito: number = 0;
+  public percentualReducaoSt: number = 0;
+  public percentualMva: number = 0;
+  public percentualIcmsSt: number = 0;
+  public percentualReducaoIcmsBc: number = 0;
+  public percentualBcStRetido: number = 0;
+  public percentualDiferimento: number = 0;
 
-  public valorIcmsDiferido: number;
-  public valorIcmsOperacao: number;
-  public valorBcIcms: number;
-  public valorIcms: number;
-  public valorBcIcmsEfetivo: number;
-  public valorIcmsEfetivo: number;
-  public valorBcIcmsSt: number;
-  public valorIcmsSt: number;
-  public valorCredito: number;
-  public valorBcStRetido: number;
-  public valorIcmsDesonerado: number;
-  public valorBcCofins: number;
-  public valorCofins: number;
-  public valorBcPis: number;
-  public valorPis: number;
-  public valorBcIpi: number;
-  public valorIpi: number;
+  public valorIcmsDiferido: number = 0;
+  public valorIcmsOperacao: number = 0;
+  public valorBcIcms: number = 0;
+  public valorIcms: number = 0;
+  public valorBcIcmsEfetivo: number = 0;
+  public valorIcmsEfetivo: number = 0;
+  public valorBcIcmsSt: number = 0;
+  public valorIcmsSt: number = 0;
+  public valorCredito: number = 0;
+  public valorBcStRetido: number = 0;
+  public valorIcmsDesonerado: number = 0;
+  public valorBcCofins: number = 0;
+  public valorCofins: number = 0;
+  public valorBcPis: number = 0;
+  public valorPis: number = 0;
+  public valorBcIpi: number = 0;
+  public valorIpi: number = 0;
 
-  public valorBcDifal: number;
-  public valorBcFcp: number;
-  public fcp: number;
-  public valorDifal: number;
-  public valorIcmsOrigem: number;
-  public valorIcmsDestino: number;
+  public valorBcDifal: number = 0;
+  public valorBcFcp: number = 0;
+  public fcp: number = 0;
+  public valorDifal: number = 0;
+  public valorIcmsOrigem: number = 0;
+  public valorIcmsDestino: number = 0;
 
-  public valorIss: number;
-  public baseCalculoIss: number;
-  public percentualIss: number;
-  public baseCalculoInss: number;
-  public baseCalculoIrrf: number;
-  public valorRetCofins: number;
-  public valorRetPis: number;
-  public valorRetIrrf: number;
-  public valorRetInss: number;
-  public valorRetCsll: number;
+  public valorIss: number = 0;
+  public baseCalculoIss: number = 0;
+  public percentualIss: number = 0;
+  public baseCalculoInss: number = 0;
+  public baseCalculoIrrf: number = 0;
+  public valorRetCofins: number = 0;
+  public valorRetPis: number = 0;
+  public valorRetIrrf: number = 0;
+  public valorRetInss: number = 0;
+  public valorRetCsll: number = 0;
 
-  public valorTributacaoFederal: number;
-  public valorTributacaoFederalImportados: number;
-  public valorTributacaoEstadual: number;
-  public valorTributacaoMunicipal: number;
-  public valorTotalTributos: number;
+  public valorTributacaoFederal: number = 0;
+  public valorTributacaoFederalImportados: number = 0;
+  public valorTributacaoEstadual: number = 0;
+  public valorTributacaoMunicipal: number = 0;
+  public valorTotalTributos: number = 0;
 
   public baseCalculoCbs: number = 0;
   public valorCbs: number = 0;
@@ -133,12 +133,13 @@ export class ResultadoTributacao {
     private tipoPessoa: TipoPessoa,
     private tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
     private tipoCalculoIcmsDesonerado: TipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
-  ) { }
+  ) {}
 
   public calcular(): ResultadoTributacao {
     if (this.produto.isServico) {
       const calcularRetencao =
-        (this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso) &&
+        (this.crtEmpresa == Crt.regimeNormal ||
+          this.crtEmpresa == Crt.simplesNacionalExcesso) &&
         this.tipoPessoa != TipoPessoa.fisica;
       this.calcularIssqn(calcularRetencao);
     } else {
@@ -161,7 +162,10 @@ export class ResultadoTributacao {
   }
 
   private calcularIcms() {
-    if ((this.crtEmpresa == Crt.regimeNormal || this.crtEmpresa == Crt.simplesNacionalExcesso)) {
+    if (
+      this.crtEmpresa == Crt.regimeNormal ||
+      this.crtEmpresa == Crt.simplesNacionalExcesso
+    ) {
       switch (this.produto.cst) {
         case Cst.cst00:
           this.icms = new Cst00();

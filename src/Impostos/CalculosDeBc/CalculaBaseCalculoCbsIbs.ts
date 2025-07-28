@@ -1,17 +1,19 @@
-
-import { Utils } from "../../utils/Utils";
-import { ResultadoTributacao } from "../Implementacoes/ResultadoTributacao";
-import { ITributavel } from "../ITributavel";
-import { CalculaBaseCalculoBase } from "./Base/CalculaBaseCalculoBase";
+import { Utils } from '../../utils/Utils';
+import { ResultadoTributacao } from '../Implementacoes/ResultadoTributacao';
+import { ITributavel } from '../ITributavel';
+import { CalculaBaseCalculoBase } from './Base/CalculaBaseCalculoBase';
 
 export class CalculaBaseCalculoCbsIbs extends CalculaBaseCalculoBase {
-  constructor(protected tributavel: ITributavel, protected resultadoTributacao: ResultadoTributacao) {
+  constructor(
+    protected tributavel: ITributavel,
+    protected resultadoTributacao: ResultadoTributacao
+  ) {
     super(tributavel);
   }
 
   public calculaBaseCalculoBase(): number {
     let baseCalculo =
-      (this.tributavel.valorProduto * this.tributavel.quantidadeProduto) +
+      this.tributavel.valorProduto * this.tributavel.quantidadeProduto +
       this.tributavel.frete +
       this.tributavel.seguro +
       this.tributavel.outrasDespesas -
@@ -20,6 +22,8 @@ export class CalculaBaseCalculoCbsIbs extends CalculaBaseCalculoBase {
       this.resultadoTributacao.valorPis -
       this.resultadoTributacao.valorCofins -
       this.resultadoTributacao.fcp;
+
+    console.log('Base de Cálculo Cbs/Ibs:', baseCalculo);
 
     return new Utils().round(baseCalculo);
   }

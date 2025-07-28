@@ -31,6 +31,11 @@ describe('Testa resultado tributacao', () => {
     produto.percentualDifalInterna = 18;
 
     produto.percentualCbs = 0.9;
+    produto.percentualDiferimentoCbs = 0;
+    produto.reducaoCbs = 0;
+
+    produto.reducaoIbsUf = 0;
+    produto.percentualDiferimentoIbsUf = 0;
     produto.percentualIbsUf = 0.1;
 
     return produto;
