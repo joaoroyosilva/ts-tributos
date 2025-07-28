@@ -60,4 +60,26 @@ describe('Testa resultado tributacao', () => {
     expect(result.valorCbs).toBe(1.51);
     expect(result.valorIbsUF).toBe(0.17);
   });
+
+  test('testa calculo cst 00 com reducao cbs', () => {
+    let produto = criaObjetoProduto();
+    produto.reducaoCbs = 60;
+
+    const utils = new Utils();
+
+    const tributacao = new ResultadoTributacao(
+      produto,
+      Crt.regimeNormal,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const result = tributacao.calcular();
+    expect(utils.round(result.fcp)).toBe(2.07);
+    expect(utils.round(result.valorIcms)).toBe(37.26);
+
+    expect(result.percentualEfetivoCbs).toBe(0.36);
+    expect(result.valorIbsUF).toBe(0.17);
+    expect(result.valorIbsUF).toBe(0.17);
+  });
 });

@@ -1,6 +1,6 @@
-import { Utils } from "../../utils/Utils";
-import { CalculaBaseCalculoCbsIbs } from "../CalculosDeBc/CalculaBaseCalculoCbsIbs";
-import { ResultadoCalculoCbsIbs } from "../Implementacoes/ResultadoCalculoCbsIbs";
+import { Utils } from '../../utils/Utils';
+import { CalculaBaseCalculoCbsIbs } from '../CalculosDeBc/CalculaBaseCalculoCbsIbs';
+import { ResultadoCalculoCbsIbs } from '../Implementacoes/ResultadoCalculoCbsIbs';
 export class TributacaoCbs {
     constructor(tributavel, resultadoTributacao) {
         this.tributavel = tributavel;
@@ -28,7 +28,7 @@ export class TributacaoCbs {
         if (this.tributavel.reducaoCbs == 0) {
             return 0;
         }
-        return new Utils().round(this.tributavel.percentualCbs / (1 - this.tributavel.reducaoCbs / 100));
+        return new Utils().round(this.tributavel.percentualCbs * (1 - this.tributavel.reducaoCbs / 100));
     }
     calculaValorEfetivo(baseCalculo, percentualEfetivo) {
         return new Utils().round((baseCalculo * percentualEfetivo) / 100);

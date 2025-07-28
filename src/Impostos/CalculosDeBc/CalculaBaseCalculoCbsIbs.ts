@@ -23,8 +23,6 @@ export class CalculaBaseCalculoCbsIbs extends CalculaBaseCalculoBase {
       this.resultadoTributacao.valorCofins -
       this.resultadoTributacao.fcp;
 
-    console.log('Base de Cálculo Cbs/Ibs:', baseCalculo);
-
     return new Utils().round(baseCalculo);
   }
 }
