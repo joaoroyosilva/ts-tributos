@@ -1,6 +1,6 @@
-import { Utils } from "../../utils/Utils";
-import { CalculaBaseCalculoCbsIbs } from "../CalculosDeBc/CalculaBaseCalculoCbsIbs";
-import { ResultadoCalculoCbsIbs } from "../Implementacoes/ResultadoCalculoCbsIbs";
+import { Utils } from '../../utils/Utils';
+import { CalculaBaseCalculoCbsIbs } from '../CalculosDeBc/CalculaBaseCalculoCbsIbs';
+import { ResultadoCalculoCbsIbs } from '../Implementacoes/ResultadoCalculoCbsIbs';
 export class TributacaoIbsUf {
     constructor(tributavel, resultadoTributacao) {
         this.tributavel = tributavel;
@@ -13,8 +13,8 @@ export class TributacaoIbsUf {
     calculaCbsIbs() {
         const baseCalculo = this.calculaBaseCalculo.calculaBaseCalculoBase();
         const valor = this.calculaValorIbsUf(baseCalculo);
-        const valorDiferido = this.calculaValorDiferido(baseCalculo);
         const percentualEfetivo = this.calculaAliquotaEfetiva();
+        const valorDiferido = this.calculaValorDiferido(baseCalculo);
         const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo);
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo);
     }
@@ -26,9 +26,9 @@ export class TributacaoIbsUf {
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoIbsUf == 0) {
-            return 0;
+            return this.tributavel.percentualIbsUf;
         }
-        return new Utils().round(this.tributavel.percentualIbsUf / (1 - this.tributavel.reducaoIbsUf / 100));
+        return new Utils().round(this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100));
     }
     calculaValorEfetivo(baseCalculo, percentualEfetivo) {
         return new Utils().round((baseCalculo * percentualEfetivo) / 100);

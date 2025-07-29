@@ -1,7 +1,7 @@
-import { CalculaBaseCalculoCbsIbs } from "../CalculosDeBc/CalculaBaseCalculoCbsIbs";
-import { ResultadoCalculoCbsIbs } from "../Implementacoes/ResultadoCalculoCbsIbs";
-import { ResultadoTributacao } from "../Implementacoes/ResultadoTributacao";
-import { ITributavel } from "../ITributavel";
+import { CalculaBaseCalculoCbsIbs } from '../CalculosDeBc/CalculaBaseCalculoCbsIbs';
+import { ResultadoCalculoCbsIbs } from '../Implementacoes/ResultadoCalculoCbsIbs';
+import { ResultadoTributacao } from '../Implementacoes/ResultadoTributacao';
+import { ITributavel } from '../ITributavel';
 export declare class TributacaoIbsMun {
     private tributavel;
     private resultadoTributacao;

@@ -13,8 +13,8 @@ export class TributacaoCbs {
     calculaCbsIbs() {
         const baseCalculo = this.calculaBaseCalculo.calculaBaseCalculoBase();
         const valor = this.calculaValorCbs(baseCalculo);
-        const valorDiferido = this.calculaValorDiferido(baseCalculo);
         const percentualEfetivo = this.calculaAliquotaEfetiva();
+        const valorDiferido = this.calculaValorDiferido(baseCalculo);
         const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo);
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo);
     }
@@ -26,7 +26,7 @@ export class TributacaoCbs {
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoCbs == 0) {
-            return 0;
+            return this.tributavel.percentualCbs;
         }
         return new Utils().round(this.tributavel.percentualCbs * (1 - this.tributavel.reducaoCbs / 100));
     }
