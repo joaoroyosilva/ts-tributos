@@ -80,7 +80,6 @@ describe('Testa resultado tributacao', () => {
 
     expect(result.percentualEfetivoCbs).toBe(0.36);
     expect(result.valorIbsUF).toBe(0.17);
-    expect(result.valorIbsUF).toBe(0.17);
   });
 
   test('testa calculo cst 00 simples nacional', () => {
@@ -101,7 +100,6 @@ describe('Testa resultado tributacao', () => {
     expect(utils.round(result.valorIcms)).toBe(0);
 
     expect(result.percentualEfetivoCbs).toBe(0.36);
-    expect(result.valorIbsUF).toBe(0.21);
     expect(result.valorIbsUF).toBe(0.21);
   });
 });
