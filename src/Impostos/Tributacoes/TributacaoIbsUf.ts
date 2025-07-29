@@ -24,8 +24,8 @@ export class TributacaoIbsUf {
   private calculaCbsIbs(): ResultadoCalculoCbsIbs {
     const baseCalculo = this.calculaBaseCalculo.calculaBaseCalculoBase();
     const valor = this.calculaValorIbsUf(baseCalculo);
-    const valorDiferido = this.calculaValorDiferido(baseCalculo);
     const percentualEfetivo = this.calculaAliquotaEfetiva();
+    const valorDiferido = this.calculaValorDiferido(baseCalculo);
     const valorEfetivo = this.calculaValorEfetivo(
       baseCalculo,
       percentualEfetivo
@@ -54,7 +54,7 @@ export class TributacaoIbsUf {
 
   private calculaAliquotaEfetiva(): number {
     if (this.tributavel.reducaoIbsUf == 0) {
-      return 0;
+      return this.tributavel.percentualIbsUf;
     }
 
     return new Utils().round(

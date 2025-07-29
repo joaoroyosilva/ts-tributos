@@ -82,4 +82,26 @@ describe('Testa resultado tributacao', () => {
     expect(result.valorIbsUF).toBe(0.17);
     expect(result.valorIbsUF).toBe(0.17);
   });
+
+  test('testa calculo cst 00 simples nacional', () => {
+    let produto = criaObjetoProduto();
+    produto.reducaoCbs = 60;
+
+    const utils = new Utils();
+
+    const tributacao = new ResultadoTributacao(
+      produto,
+      Crt.simplesNacional,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const result = tributacao.calcular();
+    expect(utils.round(result.fcp)).toBe(0);
+    expect(utils.round(result.valorIcms)).toBe(0);
+
+    expect(result.percentualEfetivoCbs).toBe(0.36);
+    expect(result.valorIbsUF).toBe(0.21);
+    expect(result.valorIbsUF).toBe(0.21);
+  });
 });
