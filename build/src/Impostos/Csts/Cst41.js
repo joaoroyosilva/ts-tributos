@@ -7,5 +7,7 @@ export class Cst41 extends CstBase {
         super(origemMercadoria, tipoDesconto);
         this.cst = Cst.cst41;
     }
+    calcula(tributavel) {
+    }
 }
 //# sourceMappingURL=Cst41.js.map

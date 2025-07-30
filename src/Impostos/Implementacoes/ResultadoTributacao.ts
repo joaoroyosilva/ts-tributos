@@ -162,6 +162,11 @@ export class ResultadoTributacao {
   }
 
   private calcularIcms() {
+    this.valorIcms = 0;
+    this.valorIcmsSt = 0;
+    this.valorBcIcms = 0;
+    this.valorBcIcmsSt = 0;
+
     if (
       this.crtEmpresa == Crt.regimeNormal ||
       this.crtEmpresa == Crt.simplesNacionalExcesso
@@ -512,6 +517,7 @@ export class ResultadoTributacao {
     if (this.crtEmpresa !== Crt.regimeNormal && this.crtEmpresa !== Crt.simplesNacionalExcesso) {
       return;
     }
+
 
     this.tributacaoFcp = new TributacaoFcp(this.produto, this.tipoDesconto);
     this.fcp = 0;

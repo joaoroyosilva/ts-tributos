@@ -5,6 +5,7 @@ import { Cst } from '../src/Flags/Cst';
 import { Documento } from '../src/Flags/Documento';
 import { TipoOperacao } from '../src/Flags/TipoOperacao';
 import { TipoPessoa } from '../src/Flags/TipoPessoa';
+import { Csosn500 } from '../src/Impostos/Csosn/Csosn500';
 import { ResultadoTributacao } from '../src/Impostos/Implementacoes/ResultadoTributacao';
 import { Utils } from '../src/utils/Utils';
 
@@ -101,5 +102,27 @@ describe('Testa resultado tributacao', () => {
 
     expect(result.percentualEfetivoCbs).toBe(0.36);
     expect(result.valorIbsUF).toBe(0.21);
+  });
+
+  test('testa calculo cst 00 simples nacional', () => {
+    let produto = criaObjetoProduto();
+    produto.cst = Cst.cst41;
+    produto.csosn = Csosn.csosn400;
+    produto.reducaoCbs = 60;
+
+    const utils = new Utils();
+
+    const tributacao = new ResultadoTributacao(
+      produto,
+      Crt.regimeNormal,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const result = tributacao.calcular();
+    expect(utils.round(result.valorIcms)).toBe(0);
+
+    expect(result.percentualEfetivoCbs).toBe(0.36);
+    expect(result.valorIbsUF).toBe(0.2);
   });
 });

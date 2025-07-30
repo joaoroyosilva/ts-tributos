@@ -1,6 +1,7 @@
 import { Cst } from '../../Flags/Cst';
 import { OrigemMercadoria } from '../../Flags/OrigemMercadoria';
 import { TipoDesconto } from '../../Flags/TipoDesconto';
+import { ITributavel } from '../ITributavel';
 import { CstBase } from './Base/CstBase';
 
 export class Cst41 extends CstBase {
@@ -10,5 +11,9 @@ export class Cst41 extends CstBase {
   ) {
     super(origemMercadoria, tipoDesconto);
     this.cst = Cst.cst41;
+  }
+
+  public calcula(tributavel: ITributavel) {
+
   }
 }

@@ -131,6 +131,10 @@ export class ResultadoTributacao {
         return this;
     }
     calcularIcms() {
+        this.valorIcms = 0;
+        this.valorIcmsSt = 0;
+        this.valorBcIcms = 0;
+        this.valorBcIcmsSt = 0;
         if (this.crtEmpresa == Crt.regimeNormal ||
             this.crtEmpresa == Crt.simplesNacionalExcesso) {
             switch (this.produto.cst) {
