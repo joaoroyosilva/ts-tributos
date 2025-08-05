@@ -23,6 +23,9 @@ export class TributacaoIbsMun {
         return new Utils().round((baseCalculo * this.tributavel.percentualIbsMun) / 100);
     }
     calculaValorDiferido(baseCalculo) {
+        if (this.tributavel.percentualDiferimentoIbsMun == 0) {
+            return 0;
+        }
         return new Utils().round(baseCalculo
             * (1 - this.tributavel.percentualIbsMun / 100)
             * (1 - this.tributavel.percentualDiferimentoIbsMun / 100));

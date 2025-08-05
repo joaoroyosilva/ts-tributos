@@ -50,6 +50,10 @@ export class TributacaoIbsMun {
   }
 
   private calculaValorDiferido(baseCalculo: number): number {
+    if (this.tributavel.percentualDiferimentoIbsMun == 0) {
+      return 0;
+    }
+
     return new Utils().round(
       baseCalculo
       * (1 - this.tributavel.percentualIbsMun / 100)

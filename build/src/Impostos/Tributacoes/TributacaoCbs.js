@@ -23,6 +23,9 @@ export class TributacaoCbs {
         return new Utils().round((baseCalculo * this.tributavel.percentualCbs) / 100);
     }
     calculaValorDiferido(baseCalculo) {
+        if (this.tributavel.percentualDiferimentoCbs == 0) {
+            return 0;
+        }
         return new Utils().round(baseCalculo
             * (1 - this.tributavel.percentualCbs / 100)
             * (1 - this.tributavel.percentualDiferimentoCbs / 100));
