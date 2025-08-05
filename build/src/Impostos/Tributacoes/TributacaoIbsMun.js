@@ -23,7 +23,9 @@ export class TributacaoIbsMun {
         return new Utils().round((baseCalculo * this.tributavel.percentualIbsMun) / 100);
     }
     calculaValorDiferido(baseCalculo) {
-        return new Utils().round((baseCalculo * this.tributavel.percentualDiferimentoIbsMun) / 100);
+        return new Utils().round(baseCalculo
+            * (1 - this.tributavel.percentualIbsMun / 100)
+            * (1 - this.tributavel.percentualDiferimentoIbsMun / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
         return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);

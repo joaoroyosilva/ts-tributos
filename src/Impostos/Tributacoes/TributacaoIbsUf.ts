@@ -51,7 +51,9 @@ export class TributacaoIbsUf {
 
   private calculaValorDiferido(baseCalculo: number): number {
     return new Utils().round(
-      (baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100
+      baseCalculo
+      * (1 - this.tributavel.percentualIbsUf / 100)
+      * (1 - this.tributavel.percentualDiferimentoIbsUf / 100)
     );
   }
 
