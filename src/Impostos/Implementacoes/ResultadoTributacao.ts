@@ -114,6 +114,9 @@ export class ResultadoTributacao {
   public percentualEfetivoCbs: number = 0;
   public valorEfetivoCbs: number = 0;
 
+  public valorCredutoPresumidoCbs: number = 0;
+  public valorCredutoPresumidoIbs: number = 0;
+
   public baseCalculoIbsUF: number = 0;
   public valorIbsUF: number = 0;
   public valorDiferidoIbsUF: number = 0;
@@ -571,6 +574,7 @@ export class ResultadoTributacao {
     this.valorDiferidoCbs = resultado.valorDiferido;
     this.percentualEfetivoCbs = resultado.percentualEfetivo;
     this.valorEfetivoCbs = resultado.valorEfetivo;
+    this.valorCredutoPresumidoCbs = resultado.valorCreditoPresumido;
   }
 
   private calcularIbsUf(): void {
@@ -583,6 +587,7 @@ export class ResultadoTributacao {
     this.valorDiferidoIbsUF = resultado.valorDiferido;
     this.percentualEfetivoIbsUF = resultado.percentualEfetivo;
     this.valorEfetivoIbsUF = resultado.valorEfetivo;
+    this.valorCredutoPresumidoIbs = resultado.valorCreditoPresumido;
   }
 
   private calcularIbsMun(): void {
@@ -595,6 +600,7 @@ export class ResultadoTributacao {
     this.valorDiferidoIbsMun = resultado.valorDiferido;
     this.percentualEfetivoIbsMun = resultado.percentualEfetivo;
     this.valorEfetivoIbsMun = resultado.valorEfetivo;
+    this.valorCredutoPresumidoIbs = resultado.valorCreditoPresumido;
   }
 
   private cstGeraDifal(cst: number): boolean {

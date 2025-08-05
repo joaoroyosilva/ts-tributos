@@ -97,6 +97,8 @@ export class ResultadoTributacao {
         this.valorDiferidoCbs = 0;
         this.percentualEfetivoCbs = 0;
         this.valorEfetivoCbs = 0;
+        this.valorCredutoPresumidoCbs = 0;
+        this.valorCredutoPresumidoIbs = 0;
         this.baseCalculoIbsUF = 0;
         this.valorIbsUF = 0;
         this.valorDiferidoIbsUF = 0;
@@ -437,6 +439,7 @@ export class ResultadoTributacao {
         this.valorDiferidoCbs = resultado.valorDiferido;
         this.percentualEfetivoCbs = resultado.percentualEfetivo;
         this.valorEfetivoCbs = resultado.valorEfetivo;
+        this.valorCredutoPresumidoCbs = resultado.valorCreditoPresumido;
     }
     calcularIbsUf() {
         this.ibsUf = new TributacaoIbsUf(this.produto, this);
@@ -446,6 +449,7 @@ export class ResultadoTributacao {
         this.valorDiferidoIbsUF = resultado.valorDiferido;
         this.percentualEfetivoIbsUF = resultado.percentualEfetivo;
         this.valorEfetivoIbsUF = resultado.valorEfetivo;
+        this.valorCredutoPresumidoIbs = resultado.valorCreditoPresumido;
     }
     calcularIbsMun() {
         this.ibsMun = new TributacaoIbsMun(this.produto, this);
@@ -455,6 +459,7 @@ export class ResultadoTributacao {
         this.valorDiferidoIbsMun = resultado.valorDiferido;
         this.percentualEfetivoIbsMun = resultado.percentualEfetivo;
         this.valorEfetivoIbsMun = resultado.valorEfetivo;
+        this.valorCredutoPresumidoIbs = resultado.valorCreditoPresumido;
     }
     cstGeraDifal(cst) {
         return cst == 0 || cst == 20 || cst == 40 || cst == 41 || cst == 60;
