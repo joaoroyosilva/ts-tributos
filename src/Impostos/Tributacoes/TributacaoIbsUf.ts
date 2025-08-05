@@ -28,7 +28,8 @@ export class TributacaoIbsUf {
     const valorDiferido = this.calculaValorDiferido(baseCalculo);
     const valorEfetivo = this.calculaValorEfetivo(
       baseCalculo,
-      percentualEfetivo
+      percentualEfetivo,
+      valorDiferido
     );
 
     return new ResultadoCalculoCbsIbs(
@@ -71,8 +72,9 @@ export class TributacaoIbsUf {
 
   private calculaValorEfetivo(
     baseCalculo: number,
-    percentualEfetivo: number
+    percentualEfetivo: number,
+    valorDiferido: number
   ): number {
-    return new Utils().round((baseCalculo * percentualEfetivo) / 100);
+    return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
   }
 }

@@ -13,9 +13,9 @@ export class TributacaoCbs {
     calculaCbsIbs() {
         const baseCalculo = this.calculaBaseCalculo.calculaBaseCalculoBase();
         const valor = this.calculaValorCbs(baseCalculo);
-        const percentualEfetivo = this.calculaAliquotaEfetiva();
         const valorDiferido = this.calculaValorDiferido(baseCalculo);
-        const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo);
+        const percentualEfetivo = this.calculaAliquotaEfetiva();
+        const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido);
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo);
     }
     calculaValorCbs(baseCalculo) {
@@ -35,8 +35,8 @@ export class TributacaoCbs {
         }
         return new Utils().round(this.tributavel.percentualCbs * (1 - this.tributavel.reducaoCbs / 100));
     }
-    calculaValorEfetivo(baseCalculo, percentualEfetivo) {
-        return new Utils().round((baseCalculo * percentualEfetivo) / 100);
+    calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido) {
+        return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
     }
 }
 //# sourceMappingURL=TributacaoCbs.js.map

@@ -15,7 +15,7 @@ export class TributacaoIbsMun {
         const valor = this.calculaValorIbsMun(baseCalculo);
         const percentualEfetivo = this.calculaAliquotaEfetiva();
         const valorDiferido = this.calculaValorDiferido(baseCalculo);
-        const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo);
+        const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido);
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo);
     }
     calculaValorIbsMun(baseCalculo) {
@@ -36,8 +36,8 @@ export class TributacaoIbsMun {
         return new Utils().round(this.tributavel.percentualIbsMun *
             (1 - this.tributavel.reducaoIbsMun / 100));
     }
-    calculaValorEfetivo(baseCalculo, percentualEfetivo) {
-        return new Utils().round((baseCalculo * percentualEfetivo) / 100);
+    calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido) {
+        return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
     }
 }
 //# sourceMappingURL=TributacaoIbsMun.js.map
