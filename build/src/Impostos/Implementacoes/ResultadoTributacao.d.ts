@@ -78,6 +78,8 @@ export declare class ResultadoTributacao {
     valorEfetivoCbs: number;
     valorCredutoPresumidoCbs: number;
     valorCredutoPresumidoIbs: number;
+    valorCredutoPresumidoIbsUF: number;
+    valorCredutoPresumidoIbsMun: number;
     baseCalculoIbsUF: number;
     valorIbsUF: number;
     valorDiferidoIbsUF: number;

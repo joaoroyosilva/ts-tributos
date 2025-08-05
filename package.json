@@ -1,6 +1,6 @@
 {
   "name": "ts-tributos",
-  "version": "1.0.36",
+  "version": "1.0.37",
   "description": "Lib para cálculo de tributos",
   "main": "./build/index.js",
   "sideEffects": false,
