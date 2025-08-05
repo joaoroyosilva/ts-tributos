@@ -5,5 +5,6 @@ export class ResultadoCalculoCbsIbs {
     public valorDiferido: number,
     public percentualEfetivo: number,
     public valorEfetivo: number,
+    public valorCreditoPresumido: number,
   ) { }
 }

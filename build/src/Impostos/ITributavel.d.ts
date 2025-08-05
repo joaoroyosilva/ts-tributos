@@ -46,6 +46,8 @@ export interface ITributavel {
     reducaoCbs: number;
     percentualDiferimentoCbs: number;
     percentualRedutorCompraGov: number;
+    percentualCreditoPresumidoCbs: number;
+    percentualCreditoPresumidoIbs: number;
     percentualIbsUf: number;
     reducaoIbsUf: number;
     percentualDiferimentoIbsUf: number;

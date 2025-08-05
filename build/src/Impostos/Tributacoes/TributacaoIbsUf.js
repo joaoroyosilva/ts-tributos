@@ -16,13 +16,17 @@ export class TributacaoIbsUf {
         const percentualEfetivo = this.calculaAliquotaEfetiva();
         const valorDiferido = this.calculaValorDiferido(baseCalculo);
         const valorEfetivo = this.calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido);
-        return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo);
+        const valorCreditoPresumido = this.calculaValorCreditoPresumido(valorEfetivo);
+        return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo, valorCreditoPresumido);
     }
     calculaValorIbsUf(baseCalculo) {
         return new Utils().round((baseCalculo * this.tributavel.percentualIbsUf) / 100);
     }
     calculaValorDiferido(baseCalculo) {
         return new Utils().round((baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100);
+    }
+    calculaValorCreditoPresumido(valorEfetivo) {
+        return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoIbsUf == 0 && this.tributavel.percentualRedutorCompraGov == 0) {

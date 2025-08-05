@@ -11,6 +11,7 @@ export declare class TributacaoIbsMun {
     private calculaCbsIbs;
     private calculaValorIbsMun;
     private calculaValorDiferido;
+    private calculaValorCreditoPresumido;
     private calculaAliquotaEfetiva;
     private calculaValorEfetivo;
 }

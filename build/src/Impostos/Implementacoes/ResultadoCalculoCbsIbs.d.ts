@@ -4,5 +4,6 @@ export declare class ResultadoCalculoCbsIbs {
     valorDiferido: number;
     percentualEfetivo: number;
     valorEfetivo: number;
-    constructor(baseCalculo: number, valor: number, valorDiferido: number, percentualEfetivo: number, valorEfetivo: number);
+    valorCreditoPresumido: number;
+    constructor(baseCalculo: number, valor: number, valorDiferido: number, percentualEfetivo: number, valorEfetivo: number, valorCreditoPresumido: number);
 }

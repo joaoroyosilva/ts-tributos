@@ -31,13 +31,15 @@ export class TributacaoIbsUf {
       percentualEfetivo,
       valorDiferido
     );
+    const valorCreditoPresumido = this.calculaValorCreditoPresumido(valorEfetivo);
 
     return new ResultadoCalculoCbsIbs(
       baseCalculo,
       valor,
       valorDiferido,
       percentualEfetivo,
-      valorEfetivo
+      valorEfetivo,
+      valorCreditoPresumido
     );
   }
 
@@ -50,6 +52,12 @@ export class TributacaoIbsUf {
   private calculaValorDiferido(baseCalculo: number): number {
     return new Utils().round(
       (baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100
+    );
+  }
+
+  private calculaValorCreditoPresumido(valorEfetivo: number): number {
+    return new Utils().round(
+      (valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100
     );
   }
 
