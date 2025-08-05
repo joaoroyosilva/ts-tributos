@@ -56,8 +56,8 @@ export class TributacaoCbs {
 
     return new Utils().round(
       baseCalculo
-      * (1 - this.tributavel.percentualCbs / 100)
-      * (1 - this.tributavel.percentualDiferimentoCbs / 100)
+      * (this.tributavel.percentualCbs / 100)
+      * (this.tributavel.percentualDiferimentoCbs / 100)
     );
   }
 

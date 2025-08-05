@@ -27,8 +27,8 @@ export class TributacaoCbs {
             return 0;
         }
         return new Utils().round(baseCalculo
-            * (1 - this.tributavel.percentualCbs / 100)
-            * (1 - this.tributavel.percentualDiferimentoCbs / 100));
+            * (this.tributavel.percentualCbs / 100)
+            * (this.tributavel.percentualDiferimentoCbs / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
         return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoCbs) / 100);

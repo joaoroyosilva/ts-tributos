@@ -27,8 +27,8 @@ export class TributacaoIbsUf {
             return 0;
         }
         return new Utils().round(baseCalculo
-            * (1 - this.tributavel.percentualIbsUf / 100)
-            * (1 - this.tributavel.percentualDiferimentoIbsUf / 100));
+            * (this.tributavel.percentualIbsUf / 100)
+            * (this.tributavel.percentualDiferimentoIbsUf / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
         return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);

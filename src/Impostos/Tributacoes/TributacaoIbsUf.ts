@@ -56,8 +56,8 @@ export class TributacaoIbsUf {
 
     return new Utils().round(
       baseCalculo
-      * (1 - this.tributavel.percentualIbsUf / 100)
-      * (1 - this.tributavel.percentualDiferimentoIbsUf / 100)
+      * (this.tributavel.percentualIbsUf / 100)
+      * (this.tributavel.percentualDiferimentoIbsUf / 100)
     );
   }
 
