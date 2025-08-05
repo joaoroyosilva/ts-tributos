@@ -55,6 +55,7 @@ export class Produto implements ITributavelProduto {
   public percentualCbs: number = 0;
   public reducaoCbs: number = 0;
   public percentualDiferimentoCbs: number = 0;
+  public percentualRedutorCompraGov: number = 0;
 
   public percentualIbsUf: number = 0;
   public reducaoIbsUf: number = 0;

@@ -53,8 +53,16 @@ export class TributacaoIbsMun {
   }
 
   private calculaAliquotaEfetiva(): number {
-    if (this.tributavel.reducaoIbsMun == 0) {
+    if (this.tributavel.reducaoIbsMun == 0 && this.tributavel.percentualRedutorCompraGov == 0) {
       return this.tributavel.percentualIbsMun;
+    }
+
+    if (this.tributavel.percentualRedutorCompraGov > 0) {
+      return new Utils().round(
+        this.tributavel.percentualIbsMun
+        * (1 - this.tributavel.reducaoIbsMun / 100)
+        * (1 - this.tributavel.percentualRedutorCompraGov / 100)
+      );
     }
 
     return new Utils().round(

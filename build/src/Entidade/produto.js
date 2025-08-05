@@ -41,6 +41,7 @@ export class Produto {
         this.percentualCbs = 0;
         this.reducaoCbs = 0;
         this.percentualDiferimentoCbs = 0;
+        this.percentualRedutorCompraGov = 0;
         this.percentualIbsUf = 0;
         this.reducaoIbsUf = 0;
         this.percentualDiferimentoIbsUf = 0;

@@ -25,8 +25,13 @@ export class TributacaoIbsUf {
         return new Utils().round((baseCalculo * this.tributavel.percentualDiferimentoIbsUf) / 100);
     }
     calculaAliquotaEfetiva() {
-        if (this.tributavel.reducaoIbsUf == 0) {
+        if (this.tributavel.reducaoIbsUf == 0 && this.tributavel.percentualRedutorCompraGov == 0) {
             return this.tributavel.percentualIbsUf;
+        }
+        if (this.tributavel.percentualRedutorCompraGov > 0) {
+            return new Utils().round(this.tributavel.percentualIbsUf
+                * (1 - this.tributavel.reducaoIbsUf / 100)
+                * (1 - this.tributavel.percentualRedutorCompraGov / 100));
         }
         return new Utils().round(this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100));
     }
