@@ -38,8 +38,7 @@ export class TributacaoIssqn {
         return new ResultadoCalculoIssqn(baseCalculo, valorIss, baseCalculoInss, baseCalculoIrrf, valorRetPis, valorRetCofins, valorRetCsll, valorRetIrrf, valorRetInss);
     }
     calcularValorIssqn(baseCalculo) {
-        const valor = (baseCalculo * this.tributavel.percentualIssqn) / 100;
-        return valor > 10 ? valor : 0;
+        return (baseCalculo * this.tributavel.percentualIssqn) / 100;
     }
     calcularRetPis(baseCalculo) {
         return (baseCalculo * this.tributavel.percentualRetPis) / 100;
