@@ -10,6 +10,7 @@ describe('Testa cálculo de iss', () => {
     produto.quantidadeProduto = 1;
     produto.valorProduto = 1000;
     produto.percentualIssqn = 2;
+    produto.isServico = true;
 
     const facade = new FacadeCalculadoraTributacao(produto);
 
@@ -25,6 +26,7 @@ describe('Testa cálculo de iss', () => {
     produto.valorProduto = 2000;
     produto.desconto = 1000;
     produto.percentualIssqn = 2;
+    produto.isServico = true;
 
     const facade = new FacadeCalculadoraTributacao(
       produto,

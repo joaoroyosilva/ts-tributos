@@ -67,8 +67,7 @@ export class TributacaoIssqn {
   }
 
   private calcularValorIssqn(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualIssqn) / 100;
-    return valor > 10 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualIssqn) / 100;
   }
 
   private calcularRetPis(baseCalculo: number): number {

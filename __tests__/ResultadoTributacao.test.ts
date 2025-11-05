@@ -145,4 +145,24 @@ describe('Testa resultado tributacao', () => {
     expect(result.percentualEfetivoCbs).toBe(5.7);
     expect(result.valorIbsUF).toBe(0.2);
   });
+
+  test('testa calculo iss', () => {
+    let produto = criaObjetoProduto();
+    produto.quantidadeProduto = 1;
+    produto.valorProduto = 100;
+    produto.percentualIssqn = 2.1105;
+    produto.isServico = true;
+
+    const tributacao = new ResultadoTributacao(
+      produto,
+      Crt.regimeNormal,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const result: ResultadoTributacao = tributacao.calcular();
+
+    expect(new Utils().round(result.baseCalculoInss)).toBe(100);
+    expect(new Utils().round(result.valorIss)).toBe(2.11);
+  });
 });
