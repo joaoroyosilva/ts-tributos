@@ -1,6 +1,7 @@
 export interface IResultadoCalculoIssqn {
-    baseCalculoInss: number;
+    baseCalculoIss: number;
     valor: number;
+    baseCalculoInss: number;
     baseCalculoIrrf: number;
     valorRetPis: number;
     valorRetCofins: number;

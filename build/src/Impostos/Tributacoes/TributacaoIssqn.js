@@ -35,7 +35,7 @@ export class TributacaoIssqn {
         const valorRetInss = calcularRetencoes
             ? this.calcularRetInss(baseCalculo)
             : 0;
-        return new ResultadoCalculoIssqn(baseCalculo, valorIss, baseCalculoInss, baseCalculoIrrf, valorRetPis, valorRetCofins, valorRetCsll, valorRetIrrf, valorRetInss);
+        return new ResultadoCalculoIssqn(baseCalculo, valorIss, baseCalculoInss, baseCalculoIrrf, valorRetPis, valorRetCofins, valorRetCsll, valorRetInss, valorRetIrrf);
     }
     calcularValorIssqn(baseCalculo) {
         return (baseCalculo * this.tributavel.percentualIssqn) / 100;
@@ -50,8 +50,7 @@ export class TributacaoIssqn {
         return (baseCalculo * this.tributavel.percentualRetCsll) / 100;
     }
     calcularRetIrrf(baseCalculo) {
-        const valor = (baseCalculo * this.tributavel.percentualRetIrrf) / 100;
-        return valor > 10 ? valor : 0;
+        return (baseCalculo * this.tributavel.percentualRetIrrf) / 100;
     }
     calcularValorTotalTributacao(baseCalculo) {
         const percentualTotal = this.tributavel.percentualRetPis +
@@ -61,8 +60,7 @@ export class TributacaoIssqn {
         return valor > 10;
     }
     calcularRetInss(baseCalculo) {
-        const valor = (baseCalculo * this.tributavel.percentualRetInss) / 100;
-        return valor > 29 ? valor : 0;
+        return (baseCalculo * this.tributavel.percentualRetInss) / 100;
     }
 }
 //# sourceMappingURL=TributacaoIssqn.js.map

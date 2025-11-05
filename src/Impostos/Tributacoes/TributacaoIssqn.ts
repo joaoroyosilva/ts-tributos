@@ -61,8 +61,8 @@ export class TributacaoIssqn {
       valorRetPis,
       valorRetCofins,
       valorRetCsll,
-      valorRetIrrf,
-      valorRetInss
+      valorRetInss,
+      valorRetIrrf
     );
   }
 
@@ -83,8 +83,7 @@ export class TributacaoIssqn {
   }
 
   private calcularRetIrrf(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualRetIrrf) / 100;
-    return valor > 10 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualRetIrrf) / 100;
   }
 
   private calcularValorTotalTributacao(baseCalculo: number): boolean {
@@ -98,7 +97,6 @@ export class TributacaoIssqn {
   }
 
   private calcularRetInss(baseCalculo: number): number {
-    const valor = (baseCalculo * this.tributavel.percentualRetInss) / 100;
-    return valor > 29 ? valor : 0;
+    return (baseCalculo * this.tributavel.percentualRetInss) / 100;
   }
 }

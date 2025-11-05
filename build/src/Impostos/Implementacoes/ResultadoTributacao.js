@@ -386,6 +386,7 @@ export class ResultadoTributacao {
     calcularIssqn(calcularRetencao) {
         this.issqn = new TributacaoIssqn(this.produto, this.tipoDesconto);
         const result = this.issqn.calcula(calcularRetencao);
+        this.baseCalculoIss = result.baseCalculoInss;
         this.baseCalculoInss = result.baseCalculoInss;
         this.baseCalculoIrrf = result.baseCalculoIrrf;
         this.valorRetCofins = result.valorRetCofins;

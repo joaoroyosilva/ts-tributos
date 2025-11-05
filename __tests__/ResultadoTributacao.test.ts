@@ -162,7 +162,7 @@ describe('Testa resultado tributacao', () => {
 
     const result: ResultadoTributacao = tributacao.calcular();
 
-    expect(new Utils().round(result.baseCalculoInss)).toBe(100);
+    expect(new Utils().round(result.baseCalculoIss)).toBe(100);
     expect(new Utils().round(result.valorIss)).toBe(2.11);
   });
 });
