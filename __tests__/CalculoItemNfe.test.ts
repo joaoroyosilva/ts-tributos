@@ -216,6 +216,7 @@ describe('Testa calculo de item nfe', () => {
 
     const resultado = calculo.calcular();
 
+    expect(utils.round(resultado.baseCalculoIss)).toBe(1000);
     expect(utils.round(resultado.valorCofins)).toBe(30);
     expect(utils.round(resultado.valorPis)).toBe(16.5);
     expect(utils.round(resultado.valorRetIrrf)).toBe(16.5);
