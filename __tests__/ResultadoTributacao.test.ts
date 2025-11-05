@@ -5,7 +5,6 @@ import { Cst } from '../src/Flags/Cst';
 import { Documento } from '../src/Flags/Documento';
 import { TipoOperacao } from '../src/Flags/TipoOperacao';
 import { TipoPessoa } from '../src/Flags/TipoPessoa';
-import { Csosn500 } from '../src/Impostos/Csosn/Csosn500';
 import { ResultadoTributacao } from '../src/Impostos/Implementacoes/ResultadoTributacao';
 import { Utils } from '../src/utils/Utils';
 

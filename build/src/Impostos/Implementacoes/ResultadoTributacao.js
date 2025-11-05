@@ -396,7 +396,8 @@ export class ResultadoTributacao {
         this.valorIss = result.valor;
     }
     calcularFcp() {
-        if (this.crtEmpresa !== Crt.regimeNormal && this.crtEmpresa !== Crt.simplesNacionalExcesso) {
+        if (this.crtEmpresa !== Crt.regimeNormal &&
+            this.crtEmpresa !== Crt.simplesNacionalExcesso) {
             return;
         }
         this.tributacaoFcp = new TributacaoFcp(this.produto, this.tipoDesconto);

@@ -19,6 +19,7 @@ import { TributacaoFcp } from '../Impostos/Tributacoes/TributacaoFcp';
 import { TributacaoFcpSt } from '../Impostos/Tributacoes/TributacaoFcpSt';
 import { TributacaoIbpt } from '../Impostos/Tributacoes/TributacaoIbpt';
 import { TributacaoIcms } from '../Impostos/Tributacoes/TributacaoIcms';
+import { TributacaoIssqn } from '../Impostos/Tributacoes/TributacaoIssqn';
 import { TributacaoIcmsSt } from '../Impostos/Tributacoes/TributacaoIcmsSt';
 import { TributacaoIpi } from '../Impostos/Tributacoes/TributacaoIpi';
 import { TributacaoPis } from '../Impostos/Tributacoes/TributacaoPis';
@@ -26,6 +27,7 @@ import { TributacaoIcmsDesonerado } from '../Impostos/Tributacoes/TributacaoIcms
 import { TipoCalculoIcmsDesonerado } from '../Flags/TipoCalculoIcmsDesonerado';
 import { TributacaoIcmsEfetivo } from '../Impostos/Tributacoes/TributacaoIcmsEfetivo';
 import { IResultadoCalculoIcmsEfetivo } from '../Impostos/IResultadoCalculoIcmsEfetivo';
+import { IResultadoCalculoIssqn } from '../Impostos/IResultadoCalculoIssqn';
 
 export class FacadeCalculadoraTributacao {
   constructor(
@@ -36,6 +38,12 @@ export class FacadeCalculadoraTributacao {
 
   public calculaIcms(): IResultadoCalculoIcms {
     return new TributacaoIcms(this.tributavel, this.tipoDesconto).calcula();
+  }
+
+  public calculaIssqn(): IResultadoCalculoIssqn {
+    return new TributacaoIssqn(this.tributavel, this.tipoDesconto).calcula(
+      true
+    );
   }
 
   public calculaIcmsEfetivo(): IResultadoCalculoIcmsEfetivo {

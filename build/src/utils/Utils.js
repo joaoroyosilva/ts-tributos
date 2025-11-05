@@ -3,4 +3,4 @@ export class Utils {
         return Math.round(number * 100) / 100;
     }
 }
-//# sourceMappingURL=utils.js.map
+//# sourceMappingURL=Utils.js.map

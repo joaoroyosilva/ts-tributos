@@ -4,6 +4,7 @@ export declare enum Documento {
     MDFe = 2,
     NFCe = 3,
     NFe = 4,
-    CTe = 5,
-    CTeOs = 6
+    NFSe = 5,
+    CTe = 6,
+    CTeOs = 7
 }

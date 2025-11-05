@@ -138,7 +138,7 @@ export class ResultadoTributacao {
     private tipoPessoa: TipoPessoa,
     private tipoDesconto: TipoDesconto = TipoDesconto.incondicional,
     private tipoCalculoIcmsDesonerado: TipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro
-  ) { }
+  ) {}
 
   public calcular(): ResultadoTributacao {
     if (this.produto.isServico) {
@@ -146,6 +146,7 @@ export class ResultadoTributacao {
         (this.crtEmpresa == Crt.regimeNormal ||
           this.crtEmpresa == Crt.simplesNacionalExcesso) &&
         this.tipoPessoa != TipoPessoa.fisica;
+
       this.calcularIssqn(calcularRetencao);
     } else {
       this.calcularIpi();
@@ -519,10 +520,12 @@ export class ResultadoTributacao {
   }
 
   private calcularFcp(): void {
-    if (this.crtEmpresa !== Crt.regimeNormal && this.crtEmpresa !== Crt.simplesNacionalExcesso) {
+    if (
+      this.crtEmpresa !== Crt.regimeNormal &&
+      this.crtEmpresa !== Crt.simplesNacionalExcesso
+    ) {
       return;
     }
-
 
     this.tributacaoFcp = new TributacaoFcp(this.produto, this.tipoDesconto);
     this.fcp = 0;

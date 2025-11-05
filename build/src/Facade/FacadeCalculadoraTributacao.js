@@ -6,6 +6,7 @@ import { TributacaoFcp } from '../Impostos/Tributacoes/TributacaoFcp';
 import { TributacaoFcpSt } from '../Impostos/Tributacoes/TributacaoFcpSt';
 import { TributacaoIbpt } from '../Impostos/Tributacoes/TributacaoIbpt';
 import { TributacaoIcms } from '../Impostos/Tributacoes/TributacaoIcms';
+import { TributacaoIssqn } from '../Impostos/Tributacoes/TributacaoIssqn';
 import { TributacaoIcmsSt } from '../Impostos/Tributacoes/TributacaoIcmsSt';
 import { TributacaoIpi } from '../Impostos/Tributacoes/TributacaoIpi';
 import { TributacaoPis } from '../Impostos/Tributacoes/TributacaoPis';
@@ -20,6 +21,9 @@ export class FacadeCalculadoraTributacao {
     }
     calculaIcms() {
         return new TributacaoIcms(this.tributavel, this.tipoDesconto).calcula();
+    }
+    calculaIssqn() {
+        return new TributacaoIssqn(this.tributavel, this.tipoDesconto).calcula(true);
     }
     calculaIcmsEfetivo() {
         return new TributacaoIcmsEfetivo(this.tributavel, this.tipoDesconto).calcula();

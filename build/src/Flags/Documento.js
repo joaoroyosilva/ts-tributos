@@ -5,7 +5,8 @@ export var Documento;
     Documento[Documento["MDFe"] = 2] = "MDFe";
     Documento[Documento["NFCe"] = 3] = "NFCe";
     Documento[Documento["NFe"] = 4] = "NFe";
-    Documento[Documento["CTe"] = 5] = "CTe";
-    Documento[Documento["CTeOs"] = 6] = "CTeOs";
+    Documento[Documento["NFSe"] = 5] = "NFSe";
+    Documento[Documento["CTe"] = 6] = "CTe";
+    Documento[Documento["CTeOs"] = 7] = "CTeOs";
 })(Documento || (Documento = {}));
 //# sourceMappingURL=Documento.js.map

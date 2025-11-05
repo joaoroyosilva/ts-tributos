@@ -4,6 +4,7 @@ export enum Documento {
   MDFe,
   NFCe,
   NFe,
+  NFSe,
   CTe,
   CTeOs,
 }
