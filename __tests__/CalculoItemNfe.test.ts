@@ -217,6 +217,7 @@ describe('Testa calculo de item nfe', () => {
     const resultado = calculo.calcular();
 
     expect(utils.round(resultado.baseCalculoIss)).toBe(1000);
+    expect(utils.round(resultado.valorIss)).toBe(50);
     expect(utils.round(resultado.valorCofins)).toBe(30);
     expect(utils.round(resultado.valorPis)).toBe(16.5);
     expect(utils.round(resultado.valorRetIrrf)).toBe(16.5);
@@ -224,5 +225,27 @@ describe('Testa calculo de item nfe', () => {
     expect(utils.round(resultado.valorRetPis)).toBe(6.5);
     expect(utils.round(resultado.valorRetInss)).toBe(110);
     expect(utils.round(resultado.valorRetCsll)).toBe(10);
+  });
+
+  test('calcular item servico sem retencao', () => {
+    let produto = new Produto();
+
+    produto.valorProduto = 1000;
+    produto.quantidadeProduto = 1.0;
+    produto.isServico = true;
+    produto.percentualIssqn = 5;
+
+    const utils = new Utils();
+    const calculo = new ResultadoTributacao(
+      produto,
+      Crt.simplesNacional,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const resultado = calculo.calcular();
+
+    expect(utils.round(resultado.baseCalculoIss)).toBe(1000);
+    expect(utils.round(resultado.valorIss)).toBe(50);
   });
 });
