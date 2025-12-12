@@ -82,6 +82,27 @@ describe('Testa resultado tributacao', () => {
     expect(result.valorIbsUF).toBe(0.17);
   });
 
+  test('testa calculo tributado compra governamental', () => {
+    let produto = criaObjetoProduto();
+    produto.cst = Cst.cst41;
+    produto.valorProduto = 100;
+    produto.percentualCbs = 8;
+    produto.percentualRedutorCompraGov = 50;
+
+    const utils = new Utils();
+
+    const tributacao = new ResultadoTributacao(
+      produto,
+      Crt.regimeNormal,
+      TipoOperacao.operacaoInterna,
+      TipoPessoa.juridica
+    );
+
+    const result = tributacao.calcular();
+
+    expect(result.percentualEfetivoCbs).toBe(4);
+  });
+
   test('testa calculo cst 00 simples nacional', () => {
     let produto = criaObjetoProduto();
     produto.reducaoCbs = 60;
