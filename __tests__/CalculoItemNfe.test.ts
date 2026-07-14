@@ -154,7 +154,8 @@ describe('Testa calculo de item nfe', () => {
     expect(utils.round(resultado.valorIcms)).toBe(178.5);
     expect(utils.round(resultado.valorIpi)).toBe(50);
     expect(utils.round(resultado.valorCofins)).toBe(31.5);
-    expect(utils.round(resultado.valorPis)).toBe(17.33);
+    // half-even (NT 007, aplicado na fonte única): valorPis de empate → 17,32 (era 17,33 half-up).
+    expect(utils.round(resultado.valorPis)).toBe(17.32);
     expect(utils.round(resultado.fcp)).toBe(21);
     expect(utils.round(resultado.valorIcmsDestino)).toBe(63);
     expect(utils.round(resultado.valorIcmsOrigem)).toBe(0);

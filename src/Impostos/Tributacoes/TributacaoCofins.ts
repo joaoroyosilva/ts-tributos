@@ -3,6 +3,7 @@ import { CalculaBaseCalculoCofins } from '../CalculosDeBc/CalculaBaseCalculoCofi
 import { ResultadoCalculoCofins } from '../Implementacoes/ResultadoCalculoCofins';
 import { IResultadoCalculoCofins } from '../IResultadoCalculoCofins';
 import { ITributavel } from '../ITributavel';
+import { Utils } from '../../utils/Utils';
 
 export class TributacaoCofins {
   private calculaBaseCalculoCofins: CalculaBaseCalculoCofins;
@@ -23,7 +24,8 @@ export class TributacaoCofins {
   private calculaCofins(): IResultadoCalculoCofins {
     const baseCalculo = this.calculaBaseCalculoCofins.calculaBaseDeCalculo();
 
-    const valorCofins = this.calculaValorCofins(baseCalculo);
+    // NT 007: vCofins com arredondamento bancário (half-even), paridade com o php-tributos.
+    const valorCofins = new Utils().roundHalfEven(this.calculaValorCofins(baseCalculo));
 
     return new ResultadoCalculoCofins(baseCalculo, valorCofins);
   }

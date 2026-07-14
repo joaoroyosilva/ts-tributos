@@ -49,4 +49,16 @@ describe('Testa CalculaCofins', () => {
     expect(utils.round(resultadoCalculoCofins.baseCalculo)).toBe(1000);
     expect(utils.round(resultadoCalculoCofins.valor)).toBe(6.5);
   });
+
+  test('vCofins usa arredondamento bancario (half-even) - NT 007', () => {
+    let produto = new Produto();
+    produto.percentualCofins = 1.625;
+    produto.valorProduto = 100;
+    produto.quantidadeProduto = 1;
+
+    const facade = new FacadeCalculadoraTributacao(produto);
+
+    // Base 100 × 1,625% = 1,625 (empate) → 1,62 (half-even), não 1,63 (half-up).
+    expect(facade.calculaCofins().valor).toBe(1.62);
+  });
 });

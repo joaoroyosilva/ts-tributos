@@ -32,7 +32,8 @@ describe('Testa CalculaPis', () => {
 
     const resultadoCalculoPis = facade.calculaPis();
     expect(utils.round(resultadoCalculoPis.baseCalculo)).toBe(1010);
-    expect(utils.round(resultadoCalculoPis.valor)).toBe(16.67);
+    // 1010 × 1,65% = 16,665 (empate) → 16,66 por half-even (NT 007), paridade com php-tributos.
+    expect(utils.round(resultadoCalculoPis.valor)).toBe(16.66);
   });
 
   test('testa calcula cofins com ipi zero', () => {
@@ -67,5 +68,17 @@ describe('Testa CalculaPis', () => {
     const resultadoCalculoPis = facade.calculaPis();
     expect(utils.round(resultadoCalculoPis.baseCalculo)).toBe(880);
     expect(utils.round(resultadoCalculoPis.valor)).toBe(14.52);
+  });
+
+  test('vPis usa arredondamento bancario (half-even) - NT 007', () => {
+    let produto = new Produto();
+    produto.percentualPis = 1.625;
+    produto.valorProduto = 100;
+    produto.quantidadeProduto = 1;
+
+    const facade = new FacadeCalculadoraTributacao(produto);
+
+    // Base 100 × 1,625% = 1,625 (empate) → 1,62 (half-even), não 1,63 (half-up).
+    expect(facade.calculaPis().valor).toBe(1.62);
   });
 });
