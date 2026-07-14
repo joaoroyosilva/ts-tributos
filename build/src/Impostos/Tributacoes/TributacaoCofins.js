@@ -1,5 +1,6 @@
 import { CalculaBaseCalculoCofins } from '../CalculosDeBc/CalculaBaseCalculoCofins';
 import { ResultadoCalculoCofins } from '../Implementacoes/ResultadoCalculoCofins';
+import { Utils } from '../../utils/Utils';
 export class TributacaoCofins {
     constructor(tributavel, tipoDesconto) {
         this.tributavel = tributavel;
@@ -11,7 +12,8 @@ export class TributacaoCofins {
     }
     calculaCofins() {
         const baseCalculo = this.calculaBaseCalculoCofins.calculaBaseDeCalculo();
-        const valorCofins = this.calculaValorCofins(baseCalculo);
+        // NT 007: vCofins com arredondamento bancário (half-even), paridade com o php-tributos.
+        const valorCofins = new Utils().roundHalfEven(this.calculaValorCofins(baseCalculo));
         return new ResultadoCalculoCofins(baseCalculo, valorCofins);
     }
     calculaValorCofins(baseCalculo) {
