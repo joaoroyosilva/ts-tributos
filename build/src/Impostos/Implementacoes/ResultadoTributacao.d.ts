@@ -23,6 +23,7 @@ export declare class ResultadoTributacao {
     private cbs;
     private ibsUf;
     private ibsMun;
+    private tribRegular;
     percentualReducao: number;
     percentualIcms: number;
     percentualIcmsEfetivo: number;
@@ -90,6 +91,17 @@ export declare class ResultadoTributacao {
     valorDiferidoIbsMun: number;
     percentualEfetivoIbsMun: number;
     valorEfetivoIbsMun: number;
+    /**
+     * Tributação regular (`gTribRegular`) — o que valeria sem a condição resolutiva ou
+     * suspensiva. Sobre a MESMA base do IBS/CBS do item.
+     */
+    baseCalculoTribRegular: number;
+    percentualEfetivoRegIbsUF: number;
+    valorTribRegIbsUF: number;
+    percentualEfetivoRegIbsMun: number;
+    valorTribRegIbsMun: number;
+    percentualEfetivoRegCbs: number;
+    valorTribRegCbs: number;
     constructor(produto: ITributavelProduto, crtEmpresa: Crt, tipoOperacao: TipoOperacao, tipoPessoa: TipoPessoa, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calcular(): ResultadoTributacao;
     private calcularIcms;
@@ -103,6 +115,7 @@ export declare class ResultadoTributacao {
     private calcularCbs;
     private calcularIbsUf;
     private calcularIbsMun;
+    private calcularTribRegular;
     private cstGeraDifal;
     private csosnGeraDifal;
 }

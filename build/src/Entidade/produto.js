@@ -50,6 +50,13 @@ export class Produto {
         this.percentualIbsMun = 0;
         this.reducaoIbsMun = 0;
         this.percentualDiferimentoIbsMun = 0;
+        this.possuiTributacaoRegular = false;
+        this.percentualRegularIbsUf = 0;
+        this.reducaoRegularIbsUf = 0;
+        this.percentualRegularIbsMun = 0;
+        this.reducaoRegularIbsMun = 0;
+        this.percentualRegularCbs = 0;
+        this.reducaoRegularCbs = 0;
     }
 }
 //# sourceMappingURL=produto.js.map

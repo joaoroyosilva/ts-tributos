@@ -59,4 +59,11 @@ export declare class Produto implements ITributavelProduto {
     percentualIbsMun: number;
     reducaoIbsMun: number;
     percentualDiferimentoIbsMun: number;
+    possuiTributacaoRegular: boolean;
+    percentualRegularIbsUf: number;
+    reducaoRegularIbsUf: number;
+    percentualRegularIbsMun: number;
+    reducaoRegularIbsMun: number;
+    percentualRegularCbs: number;
+    reducaoRegularCbs: number;
 }
