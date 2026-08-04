@@ -35,6 +35,7 @@ import { Csosn500 } from '../Csosn/Csosn500';
 import { TributacaoCbs } from '../Tributacoes/TributacaoCbs';
 import { TributacaoIbsUf } from '../Tributacoes/TributacaoIbsUf';
 import { TributacaoIbsMun } from '../Tributacoes/TributacaoIbsMun';
+import { TributacaoTribRegular } from '../Tributacoes/TributacaoTribRegular';
 export class ResultadoTributacao {
     constructor(produto, crtEmpresa, tipoOperacao, tipoPessoa, tipoDesconto = TipoDesconto.incondicional, tipoCalculoIcmsDesonerado = TipoCalculoIcmsDesonerado.BasePorDentro) {
         this.produto = produto;
@@ -111,6 +112,17 @@ export class ResultadoTributacao {
         this.valorDiferidoIbsMun = 0;
         this.percentualEfetivoIbsMun = 0;
         this.valorEfetivoIbsMun = 0;
+        /**
+         * Tributação regular (`gTribRegular`) — o que valeria sem a condição resolutiva ou
+         * suspensiva. Sobre a MESMA base do IBS/CBS do item.
+         */
+        this.baseCalculoTribRegular = 0;
+        this.percentualEfetivoRegIbsUF = 0;
+        this.valorTribRegIbsUF = 0;
+        this.percentualEfetivoRegIbsMun = 0;
+        this.valorTribRegIbsMun = 0;
+        this.percentualEfetivoRegCbs = 0;
+        this.valorTribRegCbs = 0;
     }
     calcular() {
         if (this.produto.isServico) {
@@ -132,6 +144,7 @@ export class ResultadoTributacao {
         this.calcularCbs();
         this.calcularIbsUf();
         this.calcularIbsMun();
+        this.calcularTribRegular();
         return this;
     }
     calcularIcms() {
@@ -466,6 +479,17 @@ export class ResultadoTributacao {
         this.valorEfetivoIbsMun = resultado.valorEfetivo;
         this.valorCredutoPresumidoIbsMun = resultado.valorCreditoPresumido;
         this.valorCredutoPresumidoIbs += resultado.valorCreditoPresumido;
+    }
+    calcularTribRegular() {
+        this.tribRegular = new TributacaoTribRegular(this.produto, this);
+        let resultado = this.tribRegular.calcula();
+        this.baseCalculoTribRegular = resultado.baseCalculo;
+        this.percentualEfetivoRegIbsUF = resultado.percentualEfetivoRegIbsUf;
+        this.valorTribRegIbsUF = resultado.valorTribRegIbsUf;
+        this.percentualEfetivoRegIbsMun = resultado.percentualEfetivoRegIbsMun;
+        this.valorTribRegIbsMun = resultado.valorTribRegIbsMun;
+        this.percentualEfetivoRegCbs = resultado.percentualEfetivoRegCbs;
+        this.valorTribRegCbs = resultado.valorTribRegCbs;
     }
     cstGeraDifal(cst) {
         return cst == 0 || cst == 20 || cst == 40 || cst == 41 || cst == 60;

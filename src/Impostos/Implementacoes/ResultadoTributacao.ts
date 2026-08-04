@@ -38,6 +38,7 @@ import { Csosn500 } from '../Csosn/Csosn500';
 import { TributacaoCbs } from '../Tributacoes/TributacaoCbs';
 import { TributacaoIbsUf } from '../Tributacoes/TributacaoIbsUf';
 import { TributacaoIbsMun } from '../Tributacoes/TributacaoIbsMun';
+import { TributacaoTribRegular } from '../Tributacoes/TributacaoTribRegular';
 
 export class ResultadoTributacao {
   // impostos privados
@@ -53,6 +54,7 @@ export class ResultadoTributacao {
   private cbs: TributacaoCbs;
   private ibsUf: TributacaoIbsUf;
   private ibsMun: TributacaoIbsMun;
+  private tribRegular: TributacaoTribRegular;
 
   //retorno/calculo public
   public percentualReducao: number = 0;
@@ -131,6 +133,18 @@ export class ResultadoTributacao {
   public percentualEfetivoIbsMun: number = 0;
   public valorEfetivoIbsMun: number = 0;
 
+  /**
+   * Tributação regular (`gTribRegular`) — o que valeria sem a condição resolutiva ou
+   * suspensiva. Sobre a MESMA base do IBS/CBS do item.
+   */
+  public baseCalculoTribRegular: number = 0;
+  public percentualEfetivoRegIbsUF: number = 0;
+  public valorTribRegIbsUF: number = 0;
+  public percentualEfetivoRegIbsMun: number = 0;
+  public valorTribRegIbsMun: number = 0;
+  public percentualEfetivoRegCbs: number = 0;
+  public valorTribRegCbs: number = 0;
+
   constructor(
     private produto: ITributavelProduto,
     private crtEmpresa: Crt,
@@ -163,6 +177,7 @@ export class ResultadoTributacao {
     this.calcularCbs();
     this.calcularIbsUf();
     this.calcularIbsMun();
+    this.calcularTribRegular();
 
     return this;
   }
@@ -609,6 +624,20 @@ export class ResultadoTributacao {
     this.valorEfetivoIbsMun = resultado.valorEfetivo;
     this.valorCredutoPresumidoIbsMun = resultado.valorCreditoPresumido;
     this.valorCredutoPresumidoIbs += resultado.valorCreditoPresumido;
+  }
+
+  private calcularTribRegular(): void {
+    this.tribRegular = new TributacaoTribRegular(this.produto, this);
+
+    let resultado = this.tribRegular.calcula();
+
+    this.baseCalculoTribRegular = resultado.baseCalculo;
+    this.percentualEfetivoRegIbsUF = resultado.percentualEfetivoRegIbsUf;
+    this.valorTribRegIbsUF = resultado.valorTribRegIbsUf;
+    this.percentualEfetivoRegIbsMun = resultado.percentualEfetivoRegIbsMun;
+    this.valorTribRegIbsMun = resultado.valorTribRegIbsMun;
+    this.percentualEfetivoRegCbs = resultado.percentualEfetivoRegCbs;
+    this.valorTribRegCbs = resultado.valorTribRegCbs;
   }
 
   private cstGeraDifal(cst: number): boolean {
