@@ -10,42 +10,38 @@ export class CalculaBaseIcmsSt extends CalculaBaseCalculoBase {
     super(tributavel);
   }
 
+  /**
+   * Base do ICMS-ST: (produto + frete + seguro + outras [+ IPI]) ± desconto,
+   * reduzida pela redução ST e acrescida do MVA. Desconto e redução entram uma vez só.
+   */
   public calculaBaseDeCalculo(): number {
     let baseCalculo = this.tributavel.icmsSobreIpi
       ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
       : super.calculaBaseDeCalculo();
 
     baseCalculo =
+      this.tipoDesconto === TipoDesconto.condicional
+        ? this.calculaIcmsComDescontoCondicional(baseCalculo)
+        : this.calculaIcmsComDescontoIncondicional(baseCalculo);
+
+    baseCalculo =
       baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
 
-    const baseCalculoSt = this.calculaBaseDeCalculoSt(baseCalculo);
-
-    return baseCalculoSt;
+    return this.calculaBaseDeCalculoSt(baseCalculo);
   }
 
+  /**
+   * Aplica o MVA sobre a base já com desconto e redução ST.
+   */
   public calculaBaseDeCalculoSt(baseCalculoIcms: number): number {
-    let baseCalculoSt =
-      this.tipoDesconto === TipoDesconto.condicional
-        ? this.calculaIcmsComDescontoCondicional(baseCalculoIcms)
-        : this.calculaIcmsComDescontoIncondicional(baseCalculoIcms);
-
-    baseCalculoSt = baseCalculoSt * (1 + this.tributavel.percentualMva / 100);
-
-    return baseCalculoSt;
+    return baseCalculoIcms * (1 + this.tributavel.percentualMva / 100);
   }
 
   private calculaIcmsComDescontoIncondicional(baseCalculoInicial): number {
-    let baseCalculo = baseCalculoInicial - this.tributavel.desconto;
-    baseCalculo =
-      baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
-    return baseCalculo;
+    return baseCalculoInicial - this.tributavel.desconto;
   }
 
   private calculaIcmsComDescontoCondicional(baseCalculoInicial): number {
-    let baseCalculo = baseCalculoInicial + this.tributavel.desconto;
-    baseCalculo =
-      baseCalculo - (baseCalculo * this.tributavel.percentualReducaoSt) / 100;
-
-    return baseCalculo;
+    return baseCalculoInicial + this.tributavel.desconto;
   }
 }

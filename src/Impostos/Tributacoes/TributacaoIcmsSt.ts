@@ -32,9 +32,16 @@ export class TributacaoIcmsSt {
 
     const baseCalculoIcmsSt = this.baseIcmsSt.calculaBaseDeCalculo();
 
-    const valorIcmsSt =
+    // ST abaixo do ICMS próprio não gera crédito: piso zero, base ST mantida
+    const valorIcmsSt = Math.max(
+      0,
       baseCalculoIcmsSt * (this.tributavel.percentualIcmsSt / 100) -
-      valorIcmsProprio;
+        valorIcmsProprio
+    );
+
+    if (this.tributavel.percentualIcmsSt == 0) {
+      return new ResultadoCalculoIcmsSt(baseCalculoOperacaoPropria, 0, 0, 0);
+    }
 
     return new ResultadoCalculoIcmsSt(
       baseCalculoOperacaoPropria,

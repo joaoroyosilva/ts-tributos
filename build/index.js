@@ -12,4 +12,6 @@ export { ModalidadeDeterminacaoBcIcms } from './src/Flags/ModalidadeDeterminacao
 export { ModalidadeDeterminacaoBcIcmsSt } from './src/Flags/ModalidadeDeterminacaoBcIcmsSt';
 export { MotivoDesoneracao } from './src/Flags/MotivoDesoneracao';
 export { ResultadoTributacao } from './src/Impostos/Implementacoes/ResultadoTributacao';
+export { ResultadoCalculoTribRegular } from './src/Impostos/Implementacoes/ResultadoCalculoTribRegular';
+export { TributacaoTribRegular } from './src/Impostos/Tributacoes/TributacaoTribRegular';
 //# sourceMappingURL=index.js.map

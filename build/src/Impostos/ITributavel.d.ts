@@ -54,4 +54,16 @@ export interface ITributavel {
     percentualIbsMun: number;
     reducaoIbsMun: number;
     percentualDiferimentoIbsMun: number;
+    /**
+     * Tributação regular (`gTribRegular`): o par regular descreve OUTRO `cClassTrib` — o que
+     * valeria sem a condição resolutiva ou suspensiva. Por isso as alíquotas nominais vêm em
+     * campos próprios: a alíquota do item é zero por definição nesses casos.
+     */
+    possuiTributacaoRegular: boolean;
+    percentualRegularIbsUf: number;
+    reducaoRegularIbsUf: number;
+    percentualRegularIbsMun: number;
+    reducaoRegularIbsMun: number;
+    percentualRegularCbs: number;
+    reducaoRegularCbs: number;
 }
