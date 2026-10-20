@@ -66,4 +66,7 @@ export declare class Produto implements ITributavelProduto {
     reducaoRegularIbsMun: number;
     percentualRegularCbs: number;
     reducaoRegularCbs: number;
+    rtcCompoeValorProduto: boolean;
+    rtcNaBaseIcms: boolean;
+    valorRtcBaseIcms: number;
 }

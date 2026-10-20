@@ -57,6 +57,9 @@ export class Produto {
         this.reducaoRegularIbsMun = 0;
         this.percentualRegularCbs = 0;
         this.reducaoRegularCbs = 0;
+        this.rtcCompoeValorProduto = false;
+        this.rtcNaBaseIcms = false;
+        this.valorRtcBaseIcms = 0;
     }
 }
 //# sourceMappingURL=produto.js.map

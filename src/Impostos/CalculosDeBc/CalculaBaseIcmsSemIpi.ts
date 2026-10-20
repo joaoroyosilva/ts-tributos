@@ -11,7 +11,7 @@ export class CalculaBaseCalculoIcmsSemIpi extends CalculaBaseCalculoBase {
   }
 
   public calculaBaseDeCalculo(): number {
-    const baseCalculo = super.calculaBaseDeCalculo();
+    const baseCalculo = this.calculaBaseDeCalculoIcms();
     return this.tipoDesconto === TipoDesconto.condicional
       ? this.calculaIcmsComDescontoCondicional(baseCalculo)
       : this.calculaIcmsComDescontoIncondicional(baseCalculo);

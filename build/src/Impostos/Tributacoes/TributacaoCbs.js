@@ -20,32 +20,32 @@ export class TributacaoCbs {
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo, valorCreditoPresumido);
     }
     calculaValorCbs(baseCalculo) {
-        return new Utils().round((baseCalculo * this.tributavel.percentualCbs) / 100);
+        return new Utils().roundHalfUp((baseCalculo * this.tributavel.percentualCbs) / 100);
     }
     calculaValorDiferido(baseCalculo) {
         if (this.tributavel.percentualDiferimentoCbs == 0) {
             return 0;
         }
-        return new Utils().round(baseCalculo
+        return new Utils().roundHalfUp(baseCalculo
             * (this.tributavel.percentualCbs / 100)
             * (this.tributavel.percentualDiferimentoCbs / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
-        return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoCbs) / 100);
+        return new Utils().roundHalfUp((valorEfetivo * this.tributavel.percentualCreditoPresumidoCbs) / 100);
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoCbs == 0 && this.tributavel.percentualRedutorCompraGov == 0) {
             return this.tributavel.percentualCbs;
         }
         if (this.tributavel.percentualRedutorCompraGov > 0) {
-            return new Utils().round(this.tributavel.percentualCbs
+            return new Utils().roundHalfUp(this.tributavel.percentualCbs
                 * (1 - this.tributavel.reducaoCbs / 100)
                 * (1 - this.tributavel.percentualRedutorCompraGov / 100));
         }
-        return new Utils().round(this.tributavel.percentualCbs * (1 - this.tributavel.reducaoCbs / 100));
+        return new Utils().roundHalfUp(this.tributavel.percentualCbs * (1 - this.tributavel.reducaoCbs / 100));
     }
     calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido) {
-        return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
+        return new Utils().roundHalfUp(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
     }
 }
 //# sourceMappingURL=TributacaoCbs.js.map

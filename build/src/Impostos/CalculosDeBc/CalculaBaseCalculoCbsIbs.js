@@ -17,7 +17,8 @@ export class CalculaBaseCalculoCbsIbs extends CalculaBaseCalculoBase {
             this.resultadoTributacao.valorPis -
             this.resultadoTributacao.valorCofins -
             this.resultadoTributacao.fcp;
-        return new Utils().round(baseCalculo);
+        // Meio-par, como o `PHP_ROUND_HALF_EVEN` da php-tributos.
+        return new Utils().roundHalfEven(baseCalculo);
     }
 }
 //# sourceMappingURL=CalculaBaseCalculoCbsIbs.js.map

@@ -44,7 +44,7 @@ export class TributacaoIbsUf {
   }
 
   private calculaValorIbsUf(baseCalculo: number): number {
-    return new Utils().round(
+    return new Utils().roundHalfUp(
       (baseCalculo * this.tributavel.percentualIbsUf) / 100
     );
   }
@@ -54,7 +54,7 @@ export class TributacaoIbsUf {
       return 0;
     }
 
-    return new Utils().round(
+    return new Utils().roundHalfUp(
       baseCalculo
       * (this.tributavel.percentualIbsUf / 100)
       * (this.tributavel.percentualDiferimentoIbsUf / 100)
@@ -62,7 +62,7 @@ export class TributacaoIbsUf {
   }
 
   private calculaValorCreditoPresumido(valorEfetivo: number): number {
-    return new Utils().round(
+    return new Utils().roundHalfUp(
       (valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100
     );
   }
@@ -73,13 +73,13 @@ export class TributacaoIbsUf {
     }
 
     if (this.tributavel.percentualRedutorCompraGov > 0) {
-      return new Utils().round(
+      return new Utils().roundHalfUp(
         this.tributavel.percentualIbsUf
         * (1 - this.tributavel.reducaoIbsUf / 100)
         * (1 - this.tributavel.percentualRedutorCompraGov / 100)
       );
     }
-    return new Utils().round(
+    return new Utils().roundHalfUp(
       this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100)
     );
   }
@@ -89,6 +89,6 @@ export class TributacaoIbsUf {
     percentualEfetivo: number,
     valorDiferido: number
   ): number {
-    return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
+    return new Utils().roundHalfUp(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
   }
 }

@@ -3,6 +3,17 @@ export class CalculaBaseCalculoBase {
         this.tributavel = tributavel;
     }
     calculaBaseDeCalculo() {
+        return this.calculaBaseComum();
+    }
+    /**
+     * Ponto de partida de toda base do ICMS: a base comum mais o IBS/CBS que a opção
+     * `rtcNaBaseIcms` põe dentro dela (zero quando desligada). Lê a soma comum direto, e não
+     * `calculaBaseDeCalculo()`, porque as subclasses sobrescrevem esse nome.
+     */
+    calculaBaseDeCalculoIcms() {
+        return this.calculaBaseComum() + this.tributavel.valorRtcBaseIcms;
+    }
+    calculaBaseComum() {
         const baseCalculo = this.tributavel.valorProduto * this.tributavel.quantidadeProduto +
             this.tributavel.frete +
             this.tributavel.seguro +
