@@ -16,8 +16,8 @@ export class CalculaBaseIcmsSt extends CalculaBaseCalculoBase {
    */
   public calculaBaseDeCalculo(): number {
     let baseCalculo = this.tributavel.icmsSobreIpi
-      ? super.calculaBaseDeCalculo() + this.tributavel.valorIpi
-      : super.calculaBaseDeCalculo();
+      ? this.calculaBaseDeCalculoIcms() + this.tributavel.valorIpi
+      : this.calculaBaseDeCalculoIcms();
 
     baseCalculo =
       this.tipoDesconto === TipoDesconto.condicional

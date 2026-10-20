@@ -1,3 +1,4 @@
+import { Utils } from '../../utils/Utils';
 import { ArgumentException } from '../../Exceptions/ArgumentException';
 import { FacadeCalculadoraTributacao } from '../../Facade/FacadeCalculadoraTributacao';
 import { Documento } from '../../Flags/Documento';
@@ -13,8 +14,9 @@ export class TributacaoCreditoIcms {
         return this.calculaIcmsCredito();
     }
     calculaIcmsCredito() {
-        const baseCalculo = this.calculaBaseCalculoIcms.calculaBaseDeCalculo();
-        const valorCredito = this.calculaCredito(baseCalculo);
+        const utils = new Utils();
+        const baseCalculo = utils.roundHalfUp(this.calculaBaseCalculoIcms.calculaBaseDeCalculo());
+        const valorCredito = utils.roundHalfUp(this.calculaCredito(baseCalculo));
         return new ResultadoCalculoCredito(baseCalculo, valorCredito);
     }
     calculaCredito(baseCalculo) {

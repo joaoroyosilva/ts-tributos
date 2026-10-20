@@ -78,4 +78,8 @@ export class Produto implements ITributavelProduto {
 
   public percentualRegularCbs: number = 0;
   public reducaoRegularCbs: number = 0;
+
+  public rtcCompoeValorProduto: boolean = false;
+  public rtcNaBaseIcms: boolean = false;
+  public valorRtcBaseIcms: number = 0;
 }

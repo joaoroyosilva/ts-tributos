@@ -1,3 +1,4 @@
+import { Utils } from '../../utils/Utils';
 import { CalculaBaseFcp } from '../CalculosDeBc/CalculaBaseFcp';
 import { ResultadoCalculoFcp } from '../Implementacoes/ResultadoCalculoFcp';
 export class TributacaoFcp {
@@ -11,7 +12,7 @@ export class TributacaoFcp {
     }
     calculaFcp() {
         const baseCalculo = this.calculaBaseFcp.calculaBaseDeCalculo();
-        const fcp = baseCalculo * (this.tributavel.percentualFcp / 100);
+        const fcp = new Utils().roundHalfUp(baseCalculo * (this.tributavel.percentualFcp / 100));
         return new ResultadoCalculoFcp(baseCalculo, fcp);
     }
 }

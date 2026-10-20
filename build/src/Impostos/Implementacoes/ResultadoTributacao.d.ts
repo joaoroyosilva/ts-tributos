@@ -102,8 +102,29 @@ export declare class ResultadoTributacao {
     valorTribRegIbsMun: number;
     percentualEfetivoRegCbs: number;
     valorTribRegCbs: number;
+    /** `vProd`: produto × quantidade, mais o IBS/CBS efetivo com `rtcCompoeValorProduto` (NT 2026.008). */
+    valorProdutoBruto: number;
+    /** `vUnCom` = `valorProdutoBruto` ÷ quantidade, 10 casas. */
+    valorUnitarioBruto: number;
+    /** `vProdLiq` = produto × quantidade − ICMS (NT 2026.008, I11c). */
+    valorProdutoLiquido: number;
+    /** `vUnComLiq` = `valorProdutoLiquido` ÷ quantidade, 10 casas. */
+    valorUnitarioLiquido: number;
+    /**
+     * Teto de passadas do laço do IBS/CBS na base do ICMS. Converge em 2 a 4 (o erro cai por
+     * um fator a·t a cada passada); o teto só existe para o arredondamento que oscila.
+     */
+    static readonly MAX_ITERACOES_RTC_BASE_ICMS = 10;
     constructor(produto: ITributavelProduto, crtEmpresa: Crt, tipoOperacao: TipoOperacao, tipoPessoa: TipoPessoa, tipoDesconto?: TipoDesconto, tipoCalculoIcmsDesonerado?: TipoCalculoIcmsDesonerado);
     calcular(): ResultadoTributacao;
+    private rtcEntraNaBaseIcms;
+    /**
+     * IBS/CBS que compõem o `vProd`: os valores EFETIVOS (com redução, sem o diferido), que são
+     * os que o XML destaca (`vCBS`, `vIBSUF`, `vIBSMun`).
+     */
+    private valorRtc;
+    private calcularValoresProduto;
+    private calcularTributos;
     private calcularIcms;
     private calcularIpi;
     private calcularPis;

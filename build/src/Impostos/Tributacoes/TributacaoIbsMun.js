@@ -20,33 +20,33 @@ export class TributacaoIbsMun {
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo, valorCreditoPresumido);
     }
     calculaValorIbsMun(baseCalculo) {
-        return new Utils().round((baseCalculo * this.tributavel.percentualIbsMun) / 100);
+        return new Utils().roundHalfUp((baseCalculo * this.tributavel.percentualIbsMun) / 100);
     }
     calculaValorDiferido(baseCalculo) {
         if (this.tributavel.percentualDiferimentoIbsMun == 0) {
             return 0;
         }
-        return new Utils().round(baseCalculo
+        return new Utils().roundHalfUp(baseCalculo
             * (this.tributavel.percentualIbsMun / 100)
             * (this.tributavel.percentualDiferimentoIbsMun / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
-        return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);
+        return new Utils().roundHalfUp((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoIbsMun == 0 && this.tributavel.percentualRedutorCompraGov == 0) {
             return this.tributavel.percentualIbsMun;
         }
         if (this.tributavel.percentualRedutorCompraGov > 0) {
-            return new Utils().round(this.tributavel.percentualIbsMun
+            return new Utils().roundHalfUp(this.tributavel.percentualIbsMun
                 * (1 - this.tributavel.reducaoIbsMun / 100)
                 * (1 - this.tributavel.percentualRedutorCompraGov / 100));
         }
-        return new Utils().round(this.tributavel.percentualIbsMun *
+        return new Utils().roundHalfUp(this.tributavel.percentualIbsMun *
             (1 - this.tributavel.reducaoIbsMun / 100));
     }
     calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido) {
-        return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
+        return new Utils().roundHalfUp(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
     }
 }
 //# sourceMappingURL=TributacaoIbsMun.js.map

@@ -1,3 +1,4 @@
+import { Utils } from '../../utils/Utils';
 import { TipoCalculoIcmsDesonerado } from '../../Flags/TipoCalculoIcmsDesonerado';
 import { Crt } from '../../Flags/Crt';
 import { Csosn } from '../../Flags/Csosn';
@@ -123,8 +124,60 @@ export class ResultadoTributacao {
         this.valorTribRegIbsMun = 0;
         this.percentualEfetivoRegCbs = 0;
         this.valorTribRegCbs = 0;
+        /** `vProd`: produto × quantidade, mais o IBS/CBS efetivo com `rtcCompoeValorProduto` (NT 2026.008). */
+        this.valorProdutoBruto = 0;
+        /** `vUnCom` = `valorProdutoBruto` ÷ quantidade, 10 casas. */
+        this.valorUnitarioBruto = 0;
+        /** `vProdLiq` = produto × quantidade − ICMS (NT 2026.008, I11c). */
+        this.valorProdutoLiquido = 0;
+        /** `vUnComLiq` = `valorProdutoLiquido` ÷ quantidade, 10 casas. */
+        this.valorUnitarioLiquido = 0;
     }
     calcular() {
+        this.produto.valorRtcBaseIcms = 0;
+        this.calcularTributos();
+        // IBS/CBS na base do ICMS: o ICMS sai da base do IBS/CBS e o IBS/CBS entra na base do
+        // ICMS. Ponto fixo — recalcula tudo com o RTC da passada anterior até ele repetir.
+        if (this.rtcEntraNaBaseIcms()) {
+            for (let i = 0; i < ResultadoTributacao.MAX_ITERACOES_RTC_BASE_ICMS; i++) {
+                const rtc = this.valorRtc();
+                if (rtc === this.produto.valorRtcBaseIcms) {
+                    break;
+                }
+                this.produto.valorRtcBaseIcms = rtc;
+                this.calcularTributos();
+            }
+        }
+        this.calcularValoresProduto();
+        return this;
+    }
+    rtcEntraNaBaseIcms() {
+        return (this.produto.rtcCompoeValorProduto &&
+            this.produto.rtcNaBaseIcms &&
+            !this.produto.isServico);
+    }
+    /**
+     * IBS/CBS que compõem o `vProd`: os valores EFETIVOS (com redução, sem o diferido), que são
+     * os que o XML destaca (`vCBS`, `vIBSUF`, `vIBSMun`).
+     */
+    valorRtc() {
+        return new Utils().roundHalfUp(this.valorEfetivoCbs + this.valorEfetivoIbsUF + this.valorEfetivoIbsMun);
+    }
+    calcularValoresProduto() {
+        const utils = new Utils();
+        const quantidade = this.produto.quantidadeProduto;
+        const subtotal = utils.roundHalfUp(this.produto.valorProduto * quantidade);
+        this.valorProdutoBruto = this.produto.rtcCompoeValorProduto
+            ? utils.roundHalfUp(subtotal + this.valorRtc())
+            : subtotal;
+        this.valorProdutoLiquido = utils.roundHalfUp(subtotal - this.valorIcms);
+        this.valorUnitarioBruto =
+            quantidade > 0 ? utils.roundHalfUp(this.valorProdutoBruto / quantidade, 10) : 0;
+        this.valorUnitarioLiquido =
+            quantidade > 0 ? utils.roundHalfUp(this.valorProdutoLiquido / quantidade, 10) : 0;
+    }
+    calcularTributos() {
+        this.valorCredutoPresumidoIbs = 0;
         if (this.produto.isServico) {
             const calcularRetencao = (this.crtEmpresa == Crt.regimeNormal ||
                 this.crtEmpresa == Crt.simplesNacionalExcesso) &&
@@ -145,7 +198,6 @@ export class ResultadoTributacao {
         this.calcularIbsUf();
         this.calcularIbsMun();
         this.calcularTribRegular();
-        return this;
     }
     calcularIcms() {
         this.valorIcms = 0;
@@ -498,4 +550,9 @@ export class ResultadoTributacao {
         return csosn == 102 || csosn == 103 || csosn == 400 || csosn == 500;
     }
 }
+/**
+ * Teto de passadas do laço do IBS/CBS na base do ICMS. Converge em 2 a 4 (o erro cai por
+ * um fator a·t a cada passada); o teto só existe para o arredondamento que oscila.
+ */
+ResultadoTributacao.MAX_ITERACOES_RTC_BASE_ICMS = 10;
 //# sourceMappingURL=ResultadoTributacao.js.map

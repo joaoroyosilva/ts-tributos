@@ -77,4 +77,20 @@ export interface ITributavel {
 
   percentualRegularCbs: number;
   reducaoRegularCbs: number;
+
+  /**
+   * IBS/CBS (efetivos) compõem o valor do produto (`vProd`/`vUnCom`) — NT 2026.008, a partir de
+   * 2027, exceto importação. Quem chama decide pelo ano de emissão; a lib não olha data.
+   */
+  rtcCompoeValorProduto: boolean;
+  /**
+   * IBS/CBS (efetivos) entram na base de todo o ICMS do item (próprio, FCP, ST, DIFAL, efetivo,
+   * crédito do Simples). Opção do lojista; só tem efeito com `rtcCompoeValorProduto`.
+   */
+  rtcNaBaseIcms: boolean;
+  /**
+   * IBS/CBS somados à base do ICMS. Preenchido pelo próprio `ResultadoTributacao.calcular()`
+   * a cada passada do laço; qualquer valor deixado por quem chama é zerado no início.
+   */
+  valorRtcBaseIcms: number;
 }

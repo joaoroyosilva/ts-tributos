@@ -20,32 +20,32 @@ export class TributacaoIbsUf {
         return new ResultadoCalculoCbsIbs(baseCalculo, valor, valorDiferido, percentualEfetivo, valorEfetivo, valorCreditoPresumido);
     }
     calculaValorIbsUf(baseCalculo) {
-        return new Utils().round((baseCalculo * this.tributavel.percentualIbsUf) / 100);
+        return new Utils().roundHalfUp((baseCalculo * this.tributavel.percentualIbsUf) / 100);
     }
     calculaValorDiferido(baseCalculo) {
         if (this.tributavel.percentualDiferimentoIbsUf == 0) {
             return 0;
         }
-        return new Utils().round(baseCalculo
+        return new Utils().roundHalfUp(baseCalculo
             * (this.tributavel.percentualIbsUf / 100)
             * (this.tributavel.percentualDiferimentoIbsUf / 100));
     }
     calculaValorCreditoPresumido(valorEfetivo) {
-        return new Utils().round((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);
+        return new Utils().roundHalfUp((valorEfetivo * this.tributavel.percentualCreditoPresumidoIbs) / 100);
     }
     calculaAliquotaEfetiva() {
         if (this.tributavel.reducaoIbsUf == 0 && this.tributavel.percentualRedutorCompraGov == 0) {
             return this.tributavel.percentualIbsUf;
         }
         if (this.tributavel.percentualRedutorCompraGov > 0) {
-            return new Utils().round(this.tributavel.percentualIbsUf
+            return new Utils().roundHalfUp(this.tributavel.percentualIbsUf
                 * (1 - this.tributavel.reducaoIbsUf / 100)
                 * (1 - this.tributavel.percentualRedutorCompraGov / 100));
         }
-        return new Utils().round(this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100));
+        return new Utils().roundHalfUp(this.tributavel.percentualIbsUf * (1 - this.tributavel.reducaoIbsUf / 100));
     }
     calculaValorEfetivo(baseCalculo, percentualEfetivo, valorDiferido) {
-        return new Utils().round(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
+        return new Utils().roundHalfUp(((baseCalculo * percentualEfetivo) / 100) - valorDiferido);
     }
 }
 //# sourceMappingURL=TributacaoIbsUf.js.map
